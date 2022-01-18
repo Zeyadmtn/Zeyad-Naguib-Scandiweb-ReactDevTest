@@ -1,13 +1,10 @@
 import { combineReducers } from 'redux';
+import fetchReducer from './fetchReducer';
 
-
-const counterReducer = (state, action) => {
-    return null;
-}
 
 const rootReducer = combineReducers({
 
-    counter: counterReducer,
+    fetchReducer: fetchReducer
 
 });
 
