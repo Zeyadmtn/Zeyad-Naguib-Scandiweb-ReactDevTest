@@ -21,7 +21,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const Container = connect(mapStateToProps, mapDispatchToProps)(App);
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
+
 
 class AppWrapper extends React.Component {
 
@@ -31,7 +32,7 @@ class AppWrapper extends React.Component {
     return (
       <ApolloProvider client={client}>
         <Provider store={store}>
-          <Container />
+          <ConnectedApp />
         </Provider>
       </ApolloProvider>
 
