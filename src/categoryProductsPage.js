@@ -1,8 +1,6 @@
 import React from 'react';
 import './styles.css';
-import ProductPage from './ProductPage';
 import { Link } from "react-router-dom";
-import {Navigate} from 'react-router-dom';
 
 
 

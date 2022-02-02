@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+* {
+    font-family: 'Raleway', sans-serif;
+}
+
+body {
+    background: #FFFFFF;
+    margin-left: 117px;   
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.sideImagesContainer {
+    width: 100px;
+}
+
+.sideImages {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.mainImg {
+    width: 100%;
+}
+
+.mainImgContainer {
+    width: 600px;
+    margin-left: 40px;
+    margin-bottom: 300px;
+}
+
+.prodBrand {
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.prodTitle {
+    font-size: 30px;
+    margin-bottom: 45px;
+    
+}
+
+.infoAndActionColumn {
+    margin-left: 80px;
+}
+
+.sub-title-text {
+    font-weight: bold;
+    font-size: 25px;
+}
