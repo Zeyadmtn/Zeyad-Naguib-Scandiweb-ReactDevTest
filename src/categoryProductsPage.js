@@ -14,8 +14,7 @@ class CategoryProductsPage extends React.Component {
     }
 
     redirectToPDP(singleProduct) {
-        console.log("Button Clicked on item ");
-        this.props.selectedProduct(singleProduct);
+        this.props.updateSelectedProduct(singleProduct);
     }
 
     render() {
@@ -25,17 +24,19 @@ class CategoryProductsPage extends React.Component {
                 <div className='productDisplay'>
 
                     {this.props.dataFetched.data.fetchReducer.allProducts.map((singleProduct) =>
-                        <Link  to="/product-page" key={singleProduct.id} onClick={() => this.redirectToPDP(singleProduct)}>
+                        <div onClick={() => this.redirectToPDP(singleProduct)}  key={singleProduct.id}>
+                            <Link to="/product-page">
 
-                            <div className="productItem">
-                                <div className="productImage">
-                                    <img src={singleProduct.gallery[0]} alt="prod-image" />
+                                <div className="productItem">
+                                    <div className="productImage">
+                                        <img src={singleProduct.gallery[0]} alt="prod-image" />
+                                    </div>
+                                    <h1>{singleProduct.name}</h1>
+                                    <p>${Math.floor(singleProduct.prices[0].amount)}</p>
+
                                 </div>
-                                <h1>{singleProduct.name}</h1>
-                                <p>${Math.floor(singleProduct.prices[0].amount)}</p>
-
-                            </div>
-                        </Link>
+                            </Link>
+                        </div>
                     )}
                 </div>
 

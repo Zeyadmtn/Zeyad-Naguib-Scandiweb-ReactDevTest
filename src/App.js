@@ -22,7 +22,7 @@ class App extends React.Component {
         <NavBar/>
         <Routes>
           <Route path='/product-page' element={<ProductPage  selectedProduct = {this.props.selectedProduct}/>} />
-          <Route path='/' element={<CategoryProductsPage dataFetched={this.props} selectedProduct={this.props.selectedProduct} />} />
+          <Route path='/' element={<CategoryProductsPage dataFetched={this.props} updateSelectedProduct={this.props.updateSelectedProduct} />} />
         </Routes>
       </Router>
 

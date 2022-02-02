@@ -8,11 +8,15 @@ class ProductPage extends React.Component {
     }
 
 
-    render() { 
-        return ( 
-            <h1>product selected is {this.props.selectedProduct.id}</h1>
-         );
+    render() {
+        return (
+            <div>
+                <div className="sideImages">
+                    
+                </div>
+            </div>
+        );
     }
 }
- 
+
 export default ProductPage;

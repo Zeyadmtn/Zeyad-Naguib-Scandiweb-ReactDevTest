@@ -1,6 +1,6 @@
-const productsFetchedAction = (selectedProduct) => ({
+const updateSelectedProductAction = (selectedProduct) => ({
     type: "SELECT_PRODUCT",
     payload: selectedProduct
 });
 
-export default productsFetchedAction;
+export default updateSelectedProductAction;

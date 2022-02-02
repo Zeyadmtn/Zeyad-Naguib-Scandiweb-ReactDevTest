@@ -7,8 +7,6 @@ import {
 export const fetchAllProducts = () => {
     return dispatch => {client.query({query: GET_ALL_PRODUCTS})
 .then(result => {
-    console.log("DATA FETCHED");
-    console.log(result.data);
     dispatch(productsFetchedAction(result.data))
 })}
 }
