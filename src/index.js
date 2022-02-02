@@ -7,16 +7,21 @@ import {fetchAllProducts} from './redux/actions/fetchAction'
 import { connect } from 'react-redux'
 import {ApolloProvider} from "@apollo/client";
 import {client} from './redux/graphql/client';
+import productsFetchedAction from './redux/actions/selectProductAction'
 
 
 const mapStateToProps = (state) => {
-  return { data: state }
+  return { data: state, selectedProduct: state.selectedProduct }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchData: () => {
       dispatch(fetchAllProducts())
+    },
+
+    selectedProduct: (selectedProduct) => {
+      dispatch(productsFetchedAction(selectedProduct))
     }
   }
 };
