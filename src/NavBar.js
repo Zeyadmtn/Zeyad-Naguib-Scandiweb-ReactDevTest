@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { fetchAllProducts, fetchCategoryNames } from './redux/actions/fetchAction';
 import updateSelectedProductAction from './redux/actions/selectProductAction';
 import activeCategoryAction from './redux/actions/activateCategoryAction';
+import {Link} from 'react-router-dom';
+import CurrencySelector from './CurrencySelector';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -15,29 +17,24 @@ class NavBar extends React.Component {
 
     handleCategoryButton(category){
         this.props.updateActiveCategory(category);
+        
     }
 
     render() { 
-        console.log(this.props)
         return (
             <div className='navBar'>
+                
                 {this.props.categoryNames.map((category) =>
+                <Link to="/">
                     <button className='navTypeSelectBtn' onClick={() => this.handleCategoryButton(category.name)}>{category.name}</button>
+                    </Link>
                 )}
                 
                 <div className="store_logo">
                      <img src={store_logo} alt="store_logo" />
                 </div>
                 
-
-                <div className="currencySelector">
-                    <select name="$">
-                        <option value="">$</option>
-                        <option value="USD">$ USD</option>
-                        <option value="EUR">€ EUR</option>
-                        <option value="JPY">¥ JPY</option>
-                    </select>
-                </div>
+                <CurrencySelector />
 
                 <img src={cart_icon} alt="cart_icon" className="cart_icon" />
                 

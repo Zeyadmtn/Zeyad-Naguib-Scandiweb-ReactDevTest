@@ -43,7 +43,7 @@ class CategoryProductsPage extends React.Component {
                                         <img className="productImage" src={singleProduct.gallery[0]} alt="prod-image" />
                                     </div>
                                     <h1>{singleProduct.name}</h1>
-                                    <p>${Math.floor(singleProduct.prices[0].amount)}</p>
+                                    <p>{this.props.currencySymbol}{Math.floor(singleProduct.prices[0].amount)}</p>
 
                                 </div>
                             </Link>
