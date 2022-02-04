@@ -16,9 +16,10 @@ class CategoryProductsPage extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div>
-                <h2 className='categoryName'>{this.props.activeCategory}</h2>
+                <h2 className='categoryName'>{this.props.activeCategory.toUpperCase()}</h2>
                 <div className='productDisplay'>
 
                     {this.props.dataFetched.data.fetchReducer.allProducts.map((singleProduct) =>

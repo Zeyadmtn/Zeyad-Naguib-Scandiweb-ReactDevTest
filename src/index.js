@@ -12,7 +12,11 @@ import activeCategoryAction from './redux/actions/activateCategoryAction';
 
 
 const mapStateToProps = (state) => {
-  return { data: state, selectedProduct: state.selectProductReducer.selectedProduct }
+  return { 
+    data: state, 
+    selectedProduct: state.selectProductReducer.selectedProduct,
+    activeCategory: state.activeCategoryReducer.activeCategory
+   }
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -26,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     updateActiveCategory: (activeCategory) => {
-      dispatch(activeCategoryAction(activeCategory));
+      dispatch(activeCategoryAction(activeCategory))
     }
   }
 };
