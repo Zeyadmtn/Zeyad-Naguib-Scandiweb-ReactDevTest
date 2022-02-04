@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import './categoryPageStyles.css';
 import { Link } from "react-router-dom";
 
 
@@ -18,7 +18,7 @@ class CategoryProductsPage extends React.Component {
     render() {
         return (
             <div>
-                <h2 className='categoryName'>Category Name</h2>
+                <h2 className='categoryName'>{this.props.activeCategory}</h2>
                 <div className='productDisplay'>
 
                     {this.props.dataFetched.data.fetchReducer.allProducts.map((singleProduct) =>
@@ -27,7 +27,7 @@ class CategoryProductsPage extends React.Component {
 
                                 <div className="productItem">
                                     <div className="productImage">
-                                        <img src={singleProduct.gallery[0]} alt="prod-image" />
+                                        <img className="productImage" src={singleProduct.gallery[0]} alt="prod-image" />
                                     </div>
                                     <h1>{singleProduct.name}</h1>
                                     <p>${Math.floor(singleProduct.prices[0].amount)}</p>

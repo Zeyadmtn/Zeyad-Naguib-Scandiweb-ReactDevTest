@@ -6,7 +6,8 @@ export default function fetchReducer(state = {allProducts: []}, action) {
                     ...state, 
                     allProducts: action.payload.category.products, 
                     selectedProduct: {},
-                    productsInCart: [] 
+                    productsInCart: [],
+                    activeCategory: "all" 
                 };
         default:
             return state;

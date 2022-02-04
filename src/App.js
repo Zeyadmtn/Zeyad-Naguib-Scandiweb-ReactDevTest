@@ -1,6 +1,5 @@
 import React from 'react';
 import NavBar from './NavBar';
-import './styles.css';
 import CategoryProductsPage from './categoryProductsPage';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductPage from './ProductPage';

@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import {ApolloProvider} from "@apollo/client";
 import {client} from './redux/graphql/client';
 import updateSelectedProductAction from './redux/actions/selectProductAction'
+import activeCategoryAction from './redux/actions/activateCategoryAction';
 
 
 const mapStateToProps = (state) => {
@@ -22,6 +23,10 @@ const mapDispatchToProps = (dispatch) => {
 
     updateSelectedProduct: (selectedProduct) => {
       dispatch(updateSelectedProductAction(selectedProduct))
+    },
+
+    updateActiveCategory: (activeCategory) => {
+      dispatch(activeCategoryAction(activeCategory));
     }
   }
 };

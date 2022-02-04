@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import './navBarStyles.css';
 import cart_icon from './images/cart_icon.jpg';
 import store_logo from './images/store_logo3.png';
 
