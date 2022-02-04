@@ -12,19 +12,21 @@ class App extends React.Component {
 
   componentDidMount() {
     this.props.fetchData();
+    this.props.fetchCategories();
+
   }
 
   render() {
     return (
-
       <Router>
-        <NavBar/>
+        <NavBar categoryNames={this.props.categoryNames}/>
         <Routes>
           <Route path='/product-page' element={<ProductPage  selectedProduct = {this.props.selectedProduct}/>} />
           <Route path='/' element={<CategoryProductsPage dataFetched={this.props} 
           updateSelectedProduct={this.props.updateSelectedProduct}
           activeCategory={this.props.activeCategory}
           updateActiveCategory={this.props.updateActiveCategory} />} />
+
         </Routes>
       </Router>
 

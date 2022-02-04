@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import {fetchAllProducts} from './redux/actions/fetchAction'
+import {fetchAllProducts, fetchCategoryNames} from './redux/actions/fetchAction'
 import { connect } from 'react-redux'
 import {ApolloProvider} from "@apollo/client";
 import {client} from './redux/graphql/client';
@@ -12,10 +12,12 @@ import activeCategoryAction from './redux/actions/activateCategoryAction';
 
 
 const mapStateToProps = (state) => {
+  
   return { 
     data: state, 
     selectedProduct: state.selectProductReducer.selectedProduct,
-    activeCategory: state.activeCategoryReducer.activeCategory
+    activeCategory: state.activeCategoryReducer.activeCategory,
+    categoryNames: state.fetchReducer.categoryNames
    }
 };
 
@@ -23,6 +25,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchData: () => {
       dispatch(fetchAllProducts())
+    },
+
+    fetchCategories: () => {
+      dispatch(fetchCategoryNames())
     },
 
     updateSelectedProduct: (selectedProduct) => {

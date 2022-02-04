@@ -108,3 +108,13 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
 }
 
 `;
+
+export const GET_CATEGORY_NAMES = gql`
+  query Category {
+  categories {
+    name
+  }
+}
+`;
+
+
