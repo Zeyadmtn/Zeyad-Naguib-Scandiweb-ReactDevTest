@@ -8,24 +8,24 @@ import ProductPage from './ProductPage';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    
   }
 
-  componentDidMount() {
+  componentDidMount(){
     this.props.fetchData();
     this.props.fetchCategories();
-
   }
 
   render() {
     return (
       <Router>
-        <NavBar categoryNames={this.props.categoryNames}/>
+        <NavBar/>
         <Routes>
-          <Route path='/product-page' element={<ProductPage  selectedProduct = {this.props.selectedProduct}/>} />
-          <Route path='/' element={<CategoryProductsPage dataFetched={this.props} 
-          updateSelectedProduct={this.props.updateSelectedProduct}
-          activeCategory={this.props.activeCategory}
-          updateActiveCategory={this.props.updateActiveCategory} />} />
+          <Route path='/product-page' element={<ProductPage selectedProduct={this.props.selectedProduct} />} />
+          <Route path='/' element={<CategoryProductsPage dataFetched={this.props}
+            updateSelectedProduct={this.props.updateSelectedProduct}
+            activeCategory={this.props.activeCategory}
+            updateActiveCategory={this.props.updateActiveCategory} />} />
 
         </Routes>
       </Router>

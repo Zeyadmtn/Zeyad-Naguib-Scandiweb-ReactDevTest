@@ -1,5 +1,5 @@
 
-export default function fetchReducer(state = {allProducts: []}, action) {
+export default function fetchReducer(state = {allProducts: [], categoryNames: [] }, action) {
     switch (action.type) {
         case "PRODUCTS_FETCHED":
             return { 
