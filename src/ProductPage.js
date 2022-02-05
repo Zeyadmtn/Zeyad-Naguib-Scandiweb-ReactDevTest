@@ -1,5 +1,6 @@
 import React from 'react';
 import './productPageStyles.css';
+import GetPrice from './GetPrice';
 
 
 class ProductPage extends React.Component {
@@ -8,13 +9,13 @@ class ProductPage extends React.Component {
         this.displayAttribute = this.displayAttribute.bind(this);
     }
 
-    displayAttribute(attribute) {
+    displayAttribute(attribute, key) {
         switch (attribute.id) {
             case "Size":
             case "Capacity":
             case "With USB 3 ports":
             case "Touch ID in keyboard":
-                return <div className="attribute-name">
+                return <div className="attribute-name" key={key}>
                     {attribute.name.toUpperCase()}:
 
                     <div className="attribute-text">
@@ -25,7 +26,7 @@ class ProductPage extends React.Component {
                 </div>
 
             case "Color":
-                return <div className='attribute-name'>{attribute.name}
+                return <div className='attribute-name' key={key}>{attribute.name}
                     <div className="attribute-swatch">
                         {attribute.items.map((item) => {
                             return <div key={item.id} className={"color-box-" + (item.displayValue.toLowerCase())}>
@@ -70,13 +71,12 @@ class ProductPage extends React.Component {
                     <br />
 
                     {this.props.selectedProduct.attributes.map((attribute, key) => {
-                        return this.displayAttribute(attribute)
+                        return this.displayAttribute(attribute, key)
                     })}
 
                     <div className="attribute-name">
                         PRICE: <br/>
-                        {this.props.selectedProduct.prices[0].currency.symbol}
-                        {Math.floor(this.props.selectedProduct.prices[0].amount)}
+                        <GetPrice singleProduct={this.props.selectedProduct} currencySymbol={this.props.currencySymbol} />
                     </div>
 
                     <div className="add-to-cart-button">

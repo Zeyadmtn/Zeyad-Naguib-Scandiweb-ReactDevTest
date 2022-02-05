@@ -86,9 +86,13 @@ body {
     border-radius: 30%;
 }
 
-.activeCurrency:hover {
-    color: white;
-    background-color: black;
-    padding: 5px;
-    border-radius: 30%;
+.currencySelectContainer{
+    width: 90px;
+}
+
+.currencySelect {
+    border: 0px !important;
+    outline: none;
+    width: 100%;
+    text-align: justify;
 }

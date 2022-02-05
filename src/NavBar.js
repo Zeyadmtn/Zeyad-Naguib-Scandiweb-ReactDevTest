@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { fetchAllProducts, fetchCategoryNames } from './redux/actions/fetchAction';
 import updateSelectedProductAction from './redux/actions/selectProductAction';
 import activeCategoryAction from './redux/actions/activateCategoryAction';
+import activeCurrencyAction from './redux/actions/activeCurrencyAction';
 import {Link} from 'react-router-dom';
 import CurrencySelector from './CurrencySelector';
 
@@ -25,7 +26,7 @@ class NavBar extends React.Component {
             <div className='navBar'>
                 
                 {this.props.categoryNames.map((category) =>
-                <Link to="/">
+                <Link to="/" key={category.name}>
                     <button className='navTypeSelectBtn' onClick={() => this.handleCategoryButton(category.name)}>{category.name}</button>
                     </Link>
                 )}

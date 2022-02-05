@@ -1,34 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import activeCurrencyAction from './redux/actions/activeCurrencyAction';
-import dropDownIcon from './images/dropdownDown.svg'
 import './navBarStyles.css'
+import Select from "react-dropdown-select";
+
+
 class CurrencySelector extends React.Component {
     constructor(props) {
         super(props);
-        this.handleDropDown = this.handleDropDown.bind(this);
+        
+        this.changeHandler = this.changeHandler.bind(this);
     }
 
-    handleDropDown() {
-        return <div>test</div>
-        // return <div className="allCurrencies">
-        //         {this.props.availableCurrencies.map((currency) => 
-        //             <div key={currency.symbol}>
-        //                 {currency.symbol}
-        //                 {currency.label}
-
-        //             </div>               
-        //         )}
-        //     </div>
+    changeHandler(event){
+        return this.props.updateActiveCurrency(event[0]);
     }
 
     render() {
+        
+        const currencies = this.props.availableCurrencies.map((item) => (
+            {
+              symbol: item.symbol,
+              label: item.label,
+              labelDisplayed: item.symbol + " " + item.label
+            } 
+          ));
+
         return (
-            <div>
-                <div className="activeCurrency" onClick={() => this.handleDropDown()}>
-                    {this.props.activeCurrencySymbol}
-                    <img src={dropDownIcon} />
-                </div>
+            <div className='currencySelectContainer'>
+                <Select className="currencySelect" value={this.props.activeCurrencySymbol} 
+                options={currencies} placeholder={this.props.activeCurrencySymbol} 
+                onChange={this.changeHandler}/>
             </div>
         );
     }
@@ -48,6 +50,7 @@ const mapDispatchToProps = (dispatch) => {
         updateActiveCurrency: (currency) => {
             dispatch(activeCurrencyAction(currency))
         }
+        
     }
 };
 

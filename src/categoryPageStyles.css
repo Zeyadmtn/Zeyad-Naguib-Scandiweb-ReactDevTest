@@ -34,7 +34,7 @@ a {
     width: 500px;
 }
 
-.productItem h1, p {
+.productItem h1, p, .productPrice {
     text-align: left;
     font-size: 50px;
     font-weight: lighter;
@@ -42,10 +42,13 @@ a {
 
 }
 
-.productItem p {
+
+
+.productPrice {
     text-align: left;
     font-size: 50px;
     font-weight: bold;
+    display: flex;
 }
 
 .categoryName {

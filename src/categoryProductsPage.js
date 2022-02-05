@@ -1,7 +1,7 @@
 import React from 'react';
 import './categoryPageStyles.css';
 import { Link } from "react-router-dom";
-
+import GetPrice from './GetPrice';
 
 
 class CategoryProductsPage extends React.Component {
@@ -43,7 +43,12 @@ class CategoryProductsPage extends React.Component {
                                         <img className="productImage" src={singleProduct.gallery[0]} alt="prod-image" />
                                     </div>
                                     <h1>{singleProduct.name}</h1>
-                                    <p>{this.props.currencySymbol}{Math.floor(singleProduct.prices[0].amount)}</p>
+                                    <div className='productPrice'>
+                                    
+                                    <GetPrice singleProduct={singleProduct} currencySymbol={this.props.currencySymbol} />
+
+                                </div>
+
 
                                 </div>
                             </Link>
