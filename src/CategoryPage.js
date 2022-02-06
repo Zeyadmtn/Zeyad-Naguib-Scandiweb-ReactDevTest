@@ -27,6 +27,7 @@ class CategoryProductsPage extends React.Component {
         }
     }
 
+
     render() {
         const filteredProducts = this.productCategoryFilter();
         return (

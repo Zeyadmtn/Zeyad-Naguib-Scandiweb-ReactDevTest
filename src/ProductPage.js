@@ -2,11 +2,13 @@ import React from 'react';
 import './productPageStyles.css';
 import GetPrice from './GetPrice';
 
+ 
 
 class ProductPage extends React.Component {
     constructor(props) {
         super(props);
         this.displayAttribute = this.displayAttribute.bind(this);
+        this.handleClick = this.handleClick.bind(this)
     }
 
     displayAttribute(attribute, key) {
@@ -43,6 +45,11 @@ class ProductPage extends React.Component {
         }
     };
 
+    handleClick(product){
+        console.log(this.props.cartItems);
+        this.props.addToCart(product);
+        console.log(this.props.cartItems);
+    }
 
     render() {
         return (
@@ -79,7 +86,7 @@ class ProductPage extends React.Component {
                         <GetPrice singleProduct={this.props.selectedProduct} currencySymbol={this.props.currencySymbol} />
                     </div>
 
-                    <div className="add-to-cart-button">
+                    <div className="add-to-cart-button" onClick={() => {this.handleClick(this.props.selectedProduct)}}>
                         ADD TO CART
                     </div>
 

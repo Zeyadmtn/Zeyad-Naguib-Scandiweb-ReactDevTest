@@ -37,8 +37,9 @@ class NavBar extends React.Component {
                 
                 <CurrencySelector />
 
+                <Link to="/cart">
                 <img src={cart_icon} alt="cart_icon" className="cart_icon" />
-                
+                </Link>
 
             </div>
         )

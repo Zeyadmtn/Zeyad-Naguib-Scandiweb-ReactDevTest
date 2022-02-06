@@ -1,0 +1,10 @@
+.itemCard {
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.itemCard img{
+    width: 100px;
+    height: 100px;
+}

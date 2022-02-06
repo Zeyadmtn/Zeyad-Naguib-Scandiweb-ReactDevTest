@@ -4,7 +4,7 @@ export default function selectProductReducer(state = {selectedProduct: {}}, acti
         case "SELECT_PRODUCT":
             return {
                 ...state,
-                selectedProduct: action.payload
+                selectedProduct: action.payload,
              };
         default:
             return state;

@@ -4,12 +4,19 @@ export default function fetchReducer(state = {allProducts: [],
                                               availableCurrencies: [],
                                               activeCurrency: "",
                                               activeCurrencySymbol: "",
-                                             }, action) {
+                                             }, action) 
+{
+    
     switch (action.type) {
         case "PRODUCTS_FETCHED":
+            const tempAllProducts = JSON.parse(JSON.stringify(action.payload.category.products));
+            tempAllProducts.map((product) => 
+                 {
+                     return product.qtyy = 0
+                })
             return { 
                     ...state, 
-                    allProducts: action.payload.category.products, 
+                    allProducts: tempAllProducts, 
                     selectedProduct: {},
                     productsInCart: [],
                     activeCategory: "",
