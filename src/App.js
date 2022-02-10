@@ -37,7 +37,7 @@ class App extends React.Component {
             updateActiveCategory={this.props.updateActiveCategory}
             currencySymbol={this.props.activeCurrencySymbol} />} />
 
-          <Route path='/cart' element={<Cart cartItems={this.props.cartItems}/>} />
+          <Route path='/cart' element={<Cart cartItems={this.props.cartItems} currencySymbol={this.props.activeCurrencySymbol}/>} />
 
         </Routes>
       </Router>

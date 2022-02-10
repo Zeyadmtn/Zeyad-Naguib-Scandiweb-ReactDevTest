@@ -2,7 +2,7 @@ import React from 'react';
 import './productPageStyles.css';
 import GetPrice from './GetPrice';
 
- 
+
 
 class ProductPage extends React.Component {
     constructor(props) {
@@ -12,11 +12,8 @@ class ProductPage extends React.Component {
     }
 
     displayAttribute(attribute, key) {
-        switch (attribute.id) {
-            case "Size":
-            case "Capacity":
-            case "With USB 3 ports":
-            case "Touch ID in keyboard":
+        switch (attribute.type) {
+            case "text":
                 return <div className="attribute-name" key={key}>
                     {attribute.name.toUpperCase()}:
 
@@ -27,7 +24,7 @@ class ProductPage extends React.Component {
                     </div>
                 </div>
 
-            case "Color":
+            case "swatch":
                 return <div className='attribute-name' key={key}>{attribute.name}
                     <div className="attribute-swatch">
                         {attribute.items.map((item) => {
@@ -45,10 +42,8 @@ class ProductPage extends React.Component {
         }
     };
 
-    handleClick(product){
-        console.log(this.props.cartItems);
+    handleClick(product) {
         this.props.addToCart(product);
-        console.log(this.props.cartItems);
     }
 
     render() {
@@ -82,18 +77,18 @@ class ProductPage extends React.Component {
                     })}
 
                     <div className="attribute-name">
-                        PRICE: <br/>
+                        PRICE: <br />
                         <GetPrice singleProduct={this.props.selectedProduct} currencySymbol={this.props.currencySymbol} />
                     </div>
 
-                    <div className="add-to-cart-button" onClick={() => {this.handleClick(this.props.selectedProduct)}}>
+                    <div className="add-to-cart-button" onClick={() => { this.handleClick(this.props.selectedProduct) }}>
                         ADD TO CART
                     </div>
 
                     <div className="product-description">
-                    {this.props.selectedProduct.description.split(/[>,<,/,p]+/).join('')}
+                        {this.props.selectedProduct.description.split(/[>,<,/,p]+/).join('')}
                     </div>
-                    
+
 
                 </div>
             </div>
