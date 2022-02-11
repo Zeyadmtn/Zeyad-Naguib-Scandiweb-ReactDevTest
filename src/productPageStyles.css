@@ -125,16 +125,16 @@ body {
 
 .attribute-text-item {
     border: 2px solid black;
-    padding: 5px 20px;
+    padding: 7px 20px;
     margin-right: 30px;
     margin-top: 10px;
 }
 
-.attribute-text-item:hover, attribute-text-item:active {
+.attribute-text-item:hover, .attribute-text-item-selected {
     border: 2px solid black;
-    padding: 5px 20px;
+    padding: 7px 20px;
     margin-right: 30px;
-    
+    margin-top: 10px;
     background-color: black;
     color: white;
 }

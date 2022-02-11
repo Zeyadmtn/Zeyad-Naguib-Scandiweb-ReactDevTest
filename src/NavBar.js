@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { fetchAllProducts, fetchCategoryNames } from './redux/actions/fetchAction';
 import updateSelectedProductAction from './redux/actions/selectProductAction';
 import activeCategoryAction from './redux/actions/activateCategoryAction';
-import activeCurrencyAction from './redux/actions/activeCurrencyAction';
 import {Link} from 'react-router-dom';
 import CurrencySelector from './CurrencySelector';
 
@@ -19,6 +18,10 @@ class NavBar extends React.Component {
     handleCategoryButton(category){
         this.props.updateActiveCategory(category);
         
+    }
+
+    renderMinicartOverlay(){
+      
     }
 
     render() { 

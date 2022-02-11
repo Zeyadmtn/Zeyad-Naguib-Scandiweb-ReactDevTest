@@ -9,14 +9,18 @@ export default function fetchReducer(state = {
 
     switch (action.type) {
         case "PRODUCTS_FETCHED":
-            
+
             const productsWithQTY = JSON.parse(JSON.stringify(action.payload.category.products));
             productsWithQTY.map((product) => {
                 return product.qtyy = 0
             })
             const productsWithSelAttr = JSON.parse(JSON.stringify(productsWithQTY));
             productsWithSelAttr.map((product) => {
-                return product.selectedAttributes = []
+                product.attributes.map((attribute) => {
+                    attribute.items.map((item) => {
+                        return item.selected = false;
+                    })
+                })
             })
 
             return {

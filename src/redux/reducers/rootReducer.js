@@ -4,6 +4,7 @@ import selectProductReducer from './selectProductReducer';
 import activeCategoryReducer from './activeCategoryReducer';
 import activeCurrencyReducer from './activeCurrencyReducer';
 import cartReducer from './cartReducer';
+import changeAtrReducer from './changeAtrReducer';
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     selectProductReducer: selectProductReducer,
     activeCategoryReducer: activeCategoryReducer,
     activeCurrencyReducer: activeCurrencyReducer,
-    cartReducer: cartReducer
+    cartReducer: cartReducer,
+    changeAtrReducer: changeAtrReducer
 });
 
 

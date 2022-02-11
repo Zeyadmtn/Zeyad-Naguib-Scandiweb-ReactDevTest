@@ -4,7 +4,6 @@ import App from './App';
 import { Provider } from 'react-redux';
 import {store, persistor} from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
-
 import {fetchAllProducts, fetchCategoryNames, fetchCurrencies} from './redux/actions/fetchAction'
 import { connect } from 'react-redux'
 import {ApolloProvider} from "@apollo/client";
@@ -12,8 +11,10 @@ import {client} from './redux/graphql/client';
 import updateSelectedProductAction from './redux/actions/selectProductAction'
 import activeCategoryAction from './redux/actions/activateCategoryAction';
 import activeCurrencyAction from './redux/actions/activeCurrencyAction';
-import addToCartAction from './redux/actions/addToCartAction';
+import {addToCartAction, deleteFromCartAction,
+        incrementProduct, decrementProduct } from './redux/actions/cartActions';
 import cartReducer from './redux/reducers/cartReducer';
+import changeAttributeAction from './redux/actions/changeAttributeAction';
 
 
 const mapStateToProps = (state) => {
@@ -58,6 +59,10 @@ const mapDispatchToProps = (dispatch) => {
 
     addToCart: (item) => {
       dispatch(addToCartAction(item))
+    },
+
+    changeAtr: (attribute, product) => {
+      dispatch(changeAttributeAction(attribute, product))
     }
   }
 };

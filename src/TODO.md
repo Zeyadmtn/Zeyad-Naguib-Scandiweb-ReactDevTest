@@ -14,3 +14,5 @@ TODO: Split all Files
 TODO: Remove useless constructors
 TODO: If user exits, update selectedproduct state
 TODO: Find a way to initialize state without fetchreducer
+TODO: Seperate get attribute component.
+TODO: change QTYY to QTY
