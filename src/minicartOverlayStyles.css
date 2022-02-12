@@ -1,0 +1,119 @@
+.minicart-box {
+  height: auto;
+  width: 500px;
+  background-color: white;
+  top: 75px;
+  right: 100px;
+  position: absolute;
+  box-shadow: 0px 50px 55px rgba(168, 172, 176, 0.19);
+  filter: drop-shadow(0px 50px 55px rgba(168, 172, 176, 0.19));
+  z-index: 1;
+}
+
+.minicart-title {
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.B-itemCard {
+  margin: 10px;
+  width: 250px;
+  display: grid;
+  grid-template-columns: auto, auto, auto;
+  margin-bottom: 50px;
+}
+
+.B-brand-name {
+  grid-column: 1/2;
+  grid-row: 1;
+  position: relative;
+}
+
+.B-item-name {
+  grid-column: 1;
+  grid-row: 2;
+  position: relative;
+}
+
+.right-items {
+  position: relative;
+  bottom: 38px;
+}
+
+.B-qtyContainer {
+  float: right;
+  position: fixed;
+  right: 150px;
+}
+
+.prodImg {
+  height: auto;
+  width: 90px;
+  float: right;
+  position: fixed;
+  right: 15px;
+}
+
+.B-attributes {
+  grid-row: 3;
+  grid-column: 1;
+}
+
+.B-sign {
+  border: 1px solid black;
+  padding: 2px 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.B-qtyNum {
+  text-align: center;
+  font-size: 20px;
+}
+
+.attribute-text-item,
+.attribute-text-item-selected {
+  padding: 3px 6px !important;
+  margin-right: 3px !important;
+}
+
+.viewBagButton {
+  border: 1px solid black;
+  font-weight: 900;
+  width: 180px;
+  color: black;
+  text-align: center;
+  padding: 10px 20px;
+  margin-left: 20px;
+  position: relative;
+  bottom: 0px;
+}
+
+.viewBagButton:hover {
+  background-color: black;
+  color: white;
+}
+
+.checkOut {
+  font-weight: 900;
+  width: 200px;
+  color: black;
+  text-align: center;
+  padding: 10px 20px;
+  margin: 10px 20px;
+  background-color: #5ece7b;
+  color: white;
+  position: relative;
+  left: 0px;
+  bottom: 10px;
+}
+
+.checkOut:hover {
+  background-color: black;
+}
+
+.minicartButtons {
+  display: flex;
+  flex-direction: row;
+}

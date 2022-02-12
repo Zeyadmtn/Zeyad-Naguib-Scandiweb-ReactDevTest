@@ -1,10 +1,9 @@
-import { valueToObjectRepresentation } from "@apollo/client/utilities";
 import React from "react";
 import "./cartStyles.css";
 import "./productPageStyles.css";
 import GetPrice from "./GetPrice";
 import { connect } from 'react-redux';
-import { decrementProductAction, deleteFromCartAction, incrementProductAction } from "./redux/actions/cartActions";
+import { decrementProductAction, incrementProductAction } from "./redux/actions/cartActions";
 import changeAttributeAction from "./redux/actions/changeAttributeAction";
 
 const mapStateToProps = (state) => {
@@ -27,17 +26,9 @@ const mapDispatchToProps = (dispatch) => {
 
     decrementProduct: (product) => {
       dispatch(decrementProductAction(product))
-    },
-
-    deleteProduct: (product) => {
-      dispatch(deleteFromCartAction(product))
     }
   }
 };
-
-
-
-
 
 class Cart extends React.Component {
   constructor(props) {

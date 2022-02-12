@@ -35,9 +35,7 @@ export default function cartReducer(state = { cartItems: [] }, action) {
                     selectedProduct: newSelectedProduct,
                 };
             }
-
-
-        case "DELETE_FROM_CART":
+            
         default:
             return state;
     }
