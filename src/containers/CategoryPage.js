@@ -51,7 +51,7 @@ class CategoryProductsPage extends React.PureComponent {
                       alt="prod-img"
                     />
                   </div>
-                  <h1>{singleProduct.name}</h1>
+                  <div className="productName">{singleProduct.name}</div>
                   <div className="productPrice">
                     <GetPrice
                       singleProduct={singleProduct}

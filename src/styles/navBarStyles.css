@@ -5,6 +5,7 @@
 body {
   background: #ffffff;
   margin-left: 117px;
+  
 }
 
 .navBar {
@@ -55,17 +56,28 @@ body {
   font-weight: bold;
   font-size: 70px;
   margin-left: auto;
-  width: 38px;
+  width: 50px;
   height: 29px;
   padding-bottom: 32px;
   position: absolute;
   right: 190px;
+  border: 0px !important;
+  outline: none !important;
 }
 
 .currencySelect {
   border: 0px !important;
   outline: none !important;
-  font-size: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  width: 100%;
+  text-align: justify;
+}
+
+.currencySelect:after {
+  border: 0px !important;
+  outline: none !important;
+  font-size: 10px;
   font-weight: lighter;
   width: 100%;
   text-align: justify;
@@ -73,8 +85,8 @@ body {
 
 .cart_icon {
   display: flex;
-  height: 40px;
-  width: 40px;
+  height: auto;
+  width: 30px;
   margin-left: 50px;
   padding-bottom: 32px;
   margin-top: 5px;
@@ -90,7 +102,7 @@ body {
   top: 15px;
   width: 40px;
   height: 40px;
-  left: 1350px;
+  right: 850px;
   position: absolute;
 }
 

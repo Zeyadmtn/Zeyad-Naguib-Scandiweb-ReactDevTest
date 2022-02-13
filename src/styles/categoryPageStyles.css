@@ -19,6 +19,8 @@ a {
 .productItem {
   flex-grow: 1;
   margin: 10px 80px;
+  width: 300px;
+  height: 500px;
   text-align: center;
   padding: 30px 30px 20px 30px;
 }
@@ -29,24 +31,25 @@ a {
 }
 
 .productImage img {
-  height: 500px;
-  width: 500px;
+  height: auto;
+  max-height: 300px;
+  width: 100%;
 }
 
-.productItem h1,
-p,
-.productPrice {
+.productName {
+  font-size: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   text-align: left;
-  font-size: 50px;
-  font-weight: lighter;
   color: black;
 }
 
 .productPrice {
   text-align: left;
-  font-size: 50px;
+  font-size: 30px;
   font-weight: bold;
   display: flex;
+  color: black;
 }
 
 .categoryName {
