@@ -42,6 +42,6 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [React](https://reactjs.org/docs/getting-started.html) - The web framework used
+* [Redux](https://redux.io/docs/) - State Management
+
