@@ -10,6 +10,12 @@ class GetPrice extends React.PureComponent {
           })
           .map((el, index) => {
             return (
+              !this.props.singleProduct.inStock ?
+              <div className="productPrice" key={index} style={{color: "grey"}}>
+                {el.currency.symbol}
+                {el.amount.toFixed(2)}
+              </div>
+              :
               <div className="productPrice" key={index}>
                 {el.currency.symbol}
                 {el.amount.toFixed(2)}

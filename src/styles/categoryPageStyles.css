@@ -25,6 +25,8 @@ a {
   padding: 30px 30px 20px 30px;
 }
 
+
+
 .productItem:hover {
   box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
   filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
@@ -54,4 +56,11 @@ a {
 
 .categoryName {
   font-size: 40px;
+}
+
+.outOfStock {
+  font-size: 24px;
+  position: relative;
+  z-index: 1;
+  top: 150px;
 }

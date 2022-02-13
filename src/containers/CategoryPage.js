@@ -37,21 +37,19 @@ class CategoryProductsPage extends React.PureComponent {
           {this.props.activeCategory.toUpperCase()}
         </h2>
         <div className="productDisplay">
-          {filteredProducts.map((singleProduct) => (
-            <div
-              onClick={() => this.redirectToPDP(singleProduct)}
-              key={singleProduct.id}
-            >
-              <Link to="/product-page">
+          {filteredProducts.map((singleProduct) =>
+            !singleProduct.inStock ? (
+              <div>
                 <div className="productItem">
                   <div className="productImage">
-                    <img
+                    <div className="outOfStock">OUT OF STOCK</div>
+                    <img style={{opacity: "0.3"}}
                       className="productImage"
                       src={singleProduct.gallery[0]}
                       alt="prod-img"
                     />
                   </div>
-                  <div className="productName">{singleProduct.name}</div>
+                  <div className="productName" style={{color: "grey"}}>{singleProduct.name}</div>
                   <div className="productPrice">
                     <GetPrice
                       singleProduct={singleProduct}
@@ -59,9 +57,33 @@ class CategoryProductsPage extends React.PureComponent {
                     />
                   </div>
                 </div>
-              </Link>
-            </div>
-          ))}
+              </div>
+            ) : (
+              <div
+                onClick={() => this.redirectToPDP(singleProduct)}
+                key={singleProduct.id}
+              >
+                <Link to="/product-page">
+                  <div className="productItem">
+                    <div className="productImage">
+                      <img
+                        className="productImage"
+                        src={singleProduct.gallery[0]}
+                        alt="prod-img"
+                      />
+                    </div>
+                    <div className="productName">{singleProduct.name}</div>
+                    <div className="productPrice">
+                      <GetPrice
+                        singleProduct={singleProduct}
+                        currencySymbol={this.props.activeCurrencySymbol}
+                      />
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            )
+          )}
         </div>
       </div>
     );
