@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-class ProductPage extends React.Component {
+class ProductPage extends React.PureComponent {
   constructor(props) {
     super(props);
     this.displayAttribute = this.displayAttribute.bind(this);

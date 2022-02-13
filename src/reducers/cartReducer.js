@@ -25,7 +25,6 @@ export default function cartReducer(state = { cartItems: [] }, action) {
         const newCartItems = state.cartItems.filter(
           (product) => product.id !== action.payload.id
         );
-        console.log(newCartItems);
         return {
           ...state,
           cartItems: newCartItems,

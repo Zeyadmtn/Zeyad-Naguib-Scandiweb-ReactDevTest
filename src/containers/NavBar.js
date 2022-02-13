@@ -10,7 +10,7 @@ import "../styles/navBarStyles.css";
 import CurrencySelector from "./CurrencySelector";
 import MinicartOverlay from "./MinicartOverlay.js";
 
-class NavBar extends React.Component {
+class NavBar extends React.PureComponent {
   constructor(props) {
     super(props);
     this.handleCategoryButton = this.handleCategoryButton.bind(this);

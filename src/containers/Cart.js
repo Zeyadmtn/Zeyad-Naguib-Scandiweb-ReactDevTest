@@ -9,30 +9,8 @@ import GetPrice from "../components/GetPrice";
 import "../styles/cartStyles.css";
 import "../styles/productPageStyles.css";
 
-const mapStateToProps = (state) => {
-  return {
-    activeCurrencySymbol: state.activeCurrencyReducer.activeCurrencySymbol,
-    cartItems: state.cartReducer.cartItems,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeAtr: (attribute, product) => {
-      dispatch(changeAttributeAction(attribute, product));
-    },
-
-    incrementProduct: (product) => {
-      dispatch(incrementProductAction(product));
-    },
-
-    decrementProduct: (product) => {
-      dispatch(decrementProductAction(product));
-    },
-  };
-};
-
-class Cart extends React.Component {
+class Cart extends React.PureComponent {
   constructor(props) {
     super(props);
     this.getTotalPrice = this.getTotalPrice.bind(this);
@@ -48,7 +26,7 @@ class Cart extends React.Component {
     this.props.cartItems.map((item) => {
       item.prices
         .filter((price) => {
-          return price.currency.symbol === this.props.currencySymbol;
+          return price.currency.symbol === this.props.activeCurrencySymbol;
         })
         .map((el) => {
           return (total = total + el.amount * item.qtyy);
@@ -174,7 +152,7 @@ class Cart extends React.Component {
           );
         })}
         <div className="totalPrice">
-          Total: {this.props.currencySymbol}
+          Total: {this.props.activeCurrencySymbol}
           {this.getTotalPrice().toFixed(2)}
         </div>
       </div>
@@ -182,33 +160,27 @@ class Cart extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
+  return {
+    activeCurrencySymbol: state.activeCurrencyReducer.activeCurrencySymbol,
+    cartItems: state.cartReducer.cartItems,
+  };
+};
 
-//     return {
-//       cartItems: state.cartItems
-//      }
-//   };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeAtr: (attribute, product) => {
+      dispatch(changeAttributeAction(attribute, product));
+    },
 
-//   const mapDispatchToProps = (dispatch) => {
-//     return {
-//       fetchData: () => {
-//         dispatch(fetchAllProducts())
-//       },
+    incrementProduct: (product) => {
+      dispatch(incrementProductAction(product));
+    },
 
-//       fetchCategories: () => {
-//         dispatch(fetchCategoryNames())
-//       },
-
-//       updateSelectedProduct: (selectedProduct) => {
-//         dispatch(updateSelectedProductAction(selectedProduct))
-//       },
-
-//       updateActiveCategory: (activeCategory) => {
-//         dispatch(activeCategoryAction(activeCategory))
-//       }
-//     }
-//   };
-
-//export default connect(mapStateToProps, null)(Cart);
+    decrementProduct: (product) => {
+      dispatch(decrementProductAction(product));
+    },
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

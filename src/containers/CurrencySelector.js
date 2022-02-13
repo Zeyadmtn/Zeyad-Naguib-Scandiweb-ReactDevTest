@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import activeCurrencyAction from "../actions/activeCurrencyAction";
 import "../styles/navBarStyles.css";
 
-class CurrencySelector extends React.Component {
+class CurrencySelector extends React.PureComponent {
   constructor(props) {
     super(props);
 

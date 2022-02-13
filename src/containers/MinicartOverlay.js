@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-class MinicartOverlay extends React.Component {
+class MinicartOverlay extends React.PureComponent {
   constructor(props) {
     super(props);
     this.getTotalPrice = this.getTotalPrice.bind(this);

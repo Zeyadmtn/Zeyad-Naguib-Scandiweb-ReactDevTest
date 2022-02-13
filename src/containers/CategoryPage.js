@@ -6,7 +6,7 @@ import updateSelectedProductAction from "../actions/selectProductAction";
 import GetPrice from "../components/GetPrice";
 import "../styles/categoryPageStyles.css";
 
-class CategoryProductsPage extends React.Component {
+class CategoryProductsPage extends React.PureComponent {
   constructor(props) {
     super(props);
 

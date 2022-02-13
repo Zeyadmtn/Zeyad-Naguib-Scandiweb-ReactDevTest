@@ -1,10 +1,6 @@
 import React from "react";
 
-class GetPrice extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+class GetPrice extends React.PureComponent {
   render() {
     return (
       <div>
