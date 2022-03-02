@@ -18,8 +18,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeAtr: (attribute, product) => {
-      dispatch(changeAttributeAction(attribute, product));
+    changeAtr: (attribute, item, product) => {
+      dispatch(changeAttributeAction(attribute, item, product));
     },
 
     incrementProduct: (product) => {
@@ -36,6 +36,7 @@ class MinicartOverlay extends React.PureComponent {
   constructor(props) {
     super(props);
     this.getTotalPrice = this.getTotalPrice.bind(this);
+    this.state = { reRenderState: false };
   }
 
   getTotalPrice() {
@@ -54,28 +55,24 @@ class MinicartOverlay extends React.PureComponent {
     return total;
   }
 
-  displayAttribute(attribute, key) {
+  displayAttribute(product, attribute) {
     switch (attribute.type) {
       case "text":
         return (
           <div className="attribute-text">
             {attribute.items.map((item) => {
-              if (item.selected == true) {
-                return (
-                  <div
-                    className="attribute-text-item-selected"
-                    key={item.id}
-                    onClick={() => this.changeAttribute(item)}
-                  >
-                    {item.displayValue}
-                  </div>
-                );
-              }
-              return (
+              return item.selected ? (
+                <div className="attribute-text-item-selected" key={item.id}>
+                  {item.displayValue}
+                </div>
+              ) : (
                 <div
                   className="attribute-text-item"
                   key={item.id}
-                  onClick={() => this.changeAttribute(item)}
+                  onClick={() => {
+                    this.props.changeAtr(attribute, item, product);
+                    this.setState({ reRenderState: !this.state.reRenderState });
+                  }}
                 >
                   {item.displayValue}
                 </div>
@@ -88,10 +85,21 @@ class MinicartOverlay extends React.PureComponent {
         return (
           <div className="attribute-swatch">
             {attribute.items.map((item) => {
-              return (
+              return item.selected ? (
+                <span className="swatch-border">
+                  <div
+                    className={"color-box-" + item.displayValue.toLowerCase()}
+                    key={item.id}
+                  ></div>
+                </span>
+              ) : (
                 <div
-                  key={item.id}
                   className={"color-box-" + item.displayValue.toLowerCase()}
+                  key={item.id}
+                  onClick={() => {
+                    this.props.changeAtr(attribute, item, product);
+                    this.setState({ reRenderState: !this.state.reRenderState });
+                  }}
                 ></div>
               );
             })}
@@ -160,8 +168,8 @@ class MinicartOverlay extends React.PureComponent {
               </div>
 
               <div className="B-attributes">
-                {item.attributes.map((attribute, key) => {
-                  return this.displayAttribute(attribute, key);
+                {item.attributes.map((attribute) => {
+                  return this.displayAttribute(item, attribute);
                 })}
               </div>
 

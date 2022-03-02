@@ -39,7 +39,11 @@ class CategoryProductsPage extends React.PureComponent {
         <div className="productDisplay">
           {filteredProducts.map((singleProduct) =>
             !singleProduct.inStock ? (
-              <div>
+              <div
+                onClick={() => this.redirectToPDP(singleProduct)}
+                key={singleProduct.id}
+              >
+              <Link to="/product-page">
                 <div className="productItem">
                   <div className="productImage">
                     <div className="outOfStock">OUT OF STOCK</div>
@@ -57,6 +61,7 @@ class CategoryProductsPage extends React.PureComponent {
                     />
                   </div>
                 </div>
+              </Link>
               </div>
             ) : (
               <div
