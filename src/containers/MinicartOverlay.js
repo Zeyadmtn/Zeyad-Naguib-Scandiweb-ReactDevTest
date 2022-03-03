@@ -45,7 +45,7 @@ class MinicartOverlay extends React.PureComponent {
     this.props.cartItems.map((item) => {
       item.prices
         .filter((price) => {
-          return price.currency.symbol === this.props.currencySymbol;
+          return price.currency.symbol === this.props.activeCurrencySymbol;
         })
         .map((el) => {
           return (total = total + el.amount * item.qtyy);
@@ -136,13 +136,19 @@ class MinicartOverlay extends React.PureComponent {
           return (
             <div className="B-itemCard" key={index}>
               <div className="B-brand-name">
-                <b>{item.brand}</b>
+                {item.brand}
                 <br />
                 <div className="B-item-name"></div>
                 {item.name}
+
+                <div className="item-price">
+                  <GetPrice
+                    singleProduct={item}
+                    currencySymbol={this.props.activeCurrencySymbol}
+                  />
+                </div>
               </div>
 
-              {/* <div className="B-flex-container2"> */}
               <div className="right-items">
                 <div className="B-qtyContainer">
                   <div
@@ -159,7 +165,6 @@ class MinicartOverlay extends React.PureComponent {
                     -
                   </div>
                 </div>
-                {/* </div> */}
                 <img
                   src={item.gallery[0]}
                   alt="product-image"
@@ -172,14 +177,18 @@ class MinicartOverlay extends React.PureComponent {
                   return this.displayAttribute(item, attribute);
                 })}
               </div>
-
-              <GetPrice
-                singleProduct={item}
-                currencySymbol={this.props.currencySymbol}
-              />
             </div>
           );
         })}
+
+        <div className="total-price-container">
+          <div className="total-price-title">Total</div>
+          <span className="total-price">
+            {this.props.activeCurrencySymbol}
+            {this.getTotalPrice()}
+          </span>
+        </div>
+
         <div className="minicartButtons">
           <Link to="/cart">
             <div className="viewBagButton">VIEW BAG</div>

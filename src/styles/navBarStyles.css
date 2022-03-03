@@ -13,7 +13,7 @@ body {
   background: #ffffff;
   height: 80px;
   width: 1440px;
-  margin-top: 23px;
+  margin-top: 28px;
   margin-bottom: 32px;
   margin-right: 106px;
   padding-bottom: 32px;
@@ -22,7 +22,7 @@ body {
 .navTypeSelectBtn {
   height: 10px;
   font-family: Raleway;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 120%;
   display: flex;
   align-items: center;
@@ -90,7 +90,6 @@ body {
   padding-bottom: 32px;
   margin-top: 5px;
   position: absolute;
-  /* right: 100px; */
   top: 33px;
   right: 101px;
   bottom: 27px;
@@ -100,11 +99,13 @@ body {
   display: flex;
   align-content: center;
   margin: auto;
+  margin-bottom: 15px !important;
   padding-bottom: 32px;
-  top: 30px;
+  top: 24px;
   width: 30px;
   height: 30px;
   right: 700px;
+  left: 700px;
   position: absolute;
 }
 

@@ -8,32 +8,38 @@
   box-shadow: 0px 50px 55px rgba(168, 172, 176, 0.19);
   filter: drop-shadow(0px 50px 55px rgba(168, 172, 176, 0.19));
   z-index: 2;
+  padding-left: 17px;
 }
 
 .minicart-title {
-  margin-left: 10px;
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 23px;
 }
 
 .B-itemCard {
-  margin: 10px;
+  margin: 10px, 10px, 10px, 0px;
   width: 250px;
   display: grid;
   grid-template-columns: auto, auto, auto;
-  margin-bottom: 50px;
+  margin-bottom: 43px;
 }
 
 .B-brand-name {
   grid-column: 1/2;
   grid-row: 1;
   position: relative;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 300;
 }
 
 .B-item-name {
   grid-column: 1;
   grid-row: 2;
   position: relative;
+  font-size: 16px;
+  font-weight: 300;
 }
 
 .right-items {
@@ -85,7 +91,6 @@
   color: black;
   text-align: center;
   padding: 10px 20px;
-  margin-left: 20px;
   position: relative;
   bottom: 0px;
 }
@@ -124,5 +129,31 @@
   border: 3px solid black;
   border-radius: 20%;
   margin-right: 15px;
-
 }
+
+.total-price-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  margin-bottom: 20px;
+  text-align: justify;
+  margin-top: 50px;
+}
+
+.total-price {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.item-price {
+  margin-top: 5px;
+  margin-bottom: 27px;
+}
+
