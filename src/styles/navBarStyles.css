@@ -5,7 +5,6 @@
 body {
   background: #ffffff;
   margin-left: 117px;
-  
 }
 
 .navBar {
@@ -85,13 +84,16 @@ body {
 
 .cart_icon {
   display: flex;
-  height: auto;
-  width: 30px;
+  height: 20px;
+  width: 20px;
   margin-left: 50px;
   padding-bottom: 32px;
   margin-top: 5px;
   position: absolute;
-  right: 100px;
+  /* right: 100px; */
+  top: 33px;
+  right: 101px;
+  bottom: 27px;
 }
 
 .store_logo {
@@ -99,14 +101,30 @@ body {
   align-content: center;
   margin: auto;
   padding-bottom: 32px;
-  top: 15px;
-  width: 40px;
-  height: 40px;
-  right: 850px;
+  top: 30px;
+  width: 30px;
+  height: 30px;
+  right: 700px;
   position: absolute;
 }
 
 .activeCurrency {
   padding: 5px;
   border-radius: 30%;
+}
+
+.bag-count {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  background-color: black;
+  color: white;
+
+  margin-left: 50px;
+  margin-top: 5px;
+  position: absolute;
+  right: 88px;
+  top: 25px;
+  z-index: 1;
 }

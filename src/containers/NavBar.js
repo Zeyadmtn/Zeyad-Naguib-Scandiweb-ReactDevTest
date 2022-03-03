@@ -52,6 +52,7 @@ class NavBar extends React.PureComponent {
             this.toggleMiniCartOverlay();
           }}
         >
+          <div className="bag-count">{this.props.cartItems.length}</div>
           <img src={cart_icon} alt="cart_icon" className="cart_icon" />
         </div>
 
@@ -67,6 +68,7 @@ const mapStateToProps = (state) => {
     selectedProduct: state.selectProductReducer.selectedProduct,
     activeCategory: state.activeCategoryReducer.activeCategory,
     categoryNames: state.fetchReducer.categoryNames,
+    cartItems: state.cartReducer.cartItems
   };
 };
 
