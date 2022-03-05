@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,0,550;600;0,700;0,800;0,900;1,100&family=Roboto&display=swap");
 * {
   font-family: "Raleway", sans-serif;
 }
@@ -48,20 +49,6 @@ body {
 .navTypeSelectBtn:hover {
   color: #5ece7b;
   border-bottom: 3px solid #5ece7b;
-}
-
-.currencySelectContainer {
-  display: flex;
-  font-weight: bold;
-  font-size: 70px;
-  margin-left: auto;
-  width: 50px;
-  height: 29px;
-  padding-bottom: 32px;
-  position: absolute;
-  right: 190px;
-  border: 0px !important;
-  outline: none !important;
 }
 
 .currencySelect {
@@ -128,4 +115,51 @@ body {
   right: 88px;
   top: 25px;
   z-index: 1;
+}
+
+.active-currency {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: Raleway;
+  line-height: 28.8px;
+  position: absolute;
+  right: 159px;
+}
+
+.currencySelectContainer {
+  position: absolute;
+  right: 30px;
+  top: 35px;
+}
+
+.currencyDropDown {
+  width: 75px;
+  height: auto;
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+  filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+  padding: 20px 40px 20px 20px;
+  position: absolute;
+  right: 50px;
+  top: 40px;
+}
+
+.currency {
+  text-align: left;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.currency:hover {
+  font-size: 19px;
+}
+.active-currency {
+  padding-left: 20px;
+  font-weight: 600;
+}
+
+.arrow-image {
+  position: absolute;
+  right: 143px;
+  top: 15px;
 }

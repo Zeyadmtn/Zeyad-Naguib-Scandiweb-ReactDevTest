@@ -35,61 +35,6 @@ class Cart extends React.PureComponent {
 
     return total;
   }
-
-  // displayAttribute(attribute, key) {
-  //   switch (attribute.type) {
-  //     case "text":
-  //       return (
-  //         <div className="attribute-name" key={key}>
-  //           {attribute.name.toUpperCase()}:
-  //           <div className="attribute-text">
-  //             {attribute.items.map((item) => {
-  //               if (item.selected == true) {
-  //                 return (
-  //                   <div
-  //                     className="attribute-text-item-selected"
-  //                     key={item.id}
-  //                     onClick={() => this.changeAttribute(item)}
-  //                   >
-  //                     {item.displayValue}
-  //                   </div>
-  //                 );
-  //               }
-  //               return (
-  //                 <div
-  //                   className="attribute-text-item"
-  //                   key={item.id}
-  //                   onClick={() => this.changeAttribute(item)}
-  //                 >
-  //                   {item.displayValue}
-  //                 </div>
-  //               );
-  //             })}
-  //           </div>
-  //         </div>
-  //       );
-
-  //     case "swatch":
-  //       return (
-  //         <div className="attribute-name" key={key}>
-  //           {attribute.name}
-  //           <div className="attribute-swatch">
-  //             {attribute.items.map((item) => {
-  //               return (
-  //                 <div
-  //                   key={item.id}
-  //                   className={"color-box-" + item.displayValue.toLowerCase()}
-  //                 ></div>
-  //               );
-  //             })}
-  //           </div>
-  //         </div>
-  //       );
-  //     default:
-  //       return <h1>default case</h1>;
-  //   }
-  // }
-
   displayAttribute(product, attribute) {
     switch (attribute.type) {
       case "text":
