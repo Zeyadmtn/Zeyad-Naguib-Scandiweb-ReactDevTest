@@ -63,9 +63,9 @@ class CategoryProductsPage extends React.PureComponent {
                   onMouseOver={() => this.toggleATCIcon()}
                   onMouseOut={() => this.toggleATCIcon()}
                 >
-                  {/* {this.state.toggleATCIcon ? (
+                  {this.state.toggleATCIcon ? (
                     <img src={add_to_cart_circle} alt="add-to-cart" />
-                  ) : null} */}
+                  ) : null}
 
                   <Link to="/product-page">
                     <div className="productImage">

@@ -37,62 +37,9 @@ class ProductPage extends React.PureComponent {
     super(props);
     this.displayAttribute = this.displayAttribute.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.state = { reRenderState: false };
+    this.displayImageGallery = this.displayImageGallery.bind(this);
+    this.state = { reRenderState: false, activeImage: this.props.selectedProduct.gallery[0] };
   }
-
-  // displayAttribute(attribute, key) {
-  //   switch (attribute.type) {
-  //     case "text":
-  //       return (
-  //         <div className="attribute-name" key={key}>
-  //           {attribute.name.toUpperCase()}:
-  //           <div className="attribute-text">
-  //             {attribute.items.map((item) => {
-  //               return item.selected ? (
-  //                 <div
-  //                   className="attribute-text-item-selected"
-  //                   key={item.id}
-  //                 >
-  //                   {item.displayValue}
-  //                 </div>
-  //               ) : (
-  //                 <div
-  //                   className="attribute-text-item"
-  //                   key={item.id}
-  //                   onClick={() => {
-  //                     this.props.changeAtr(attribute, item, this.props.selectedProduct);
-  //                     this.changeAttribute(item);
-  //                   }}
-  //                 >
-  //                   {item.displayValue}
-  //                 </div>
-  //               );
-  //             })}
-  //           </div>
-  //         </div>
-  //       );
-
-  //     case "swatch":
-  //       return (
-  //         <div className="attribute-name" key={key}>
-  //           {attribute.name}
-  //           <div className="attribute-swatch">
-  //             {attribute.items.map((item) => {
-  //               return (
-  //                 <div
-  //                   key={item.id}
-  //                   className={"color-box-" + item.displayValue.toLowerCase()}
-  //                 ></div>
-  //               );
-  //             })}
-  //           </div>
-  //         </div>
-  //       );
-
-  //     default:
-  //       return <h1>default case</h1>;
-  //   }
-  // }
 
   displayAttribute(product, attribute) {
     switch (attribute.type) {
@@ -168,6 +115,10 @@ class ProductPage extends React.PureComponent {
     }
   }
 
+  displayImageGallery(prodImage){
+    this.setState({activeImage: prodImage});
+  }
+
   render() {
     return (
       <div className="container">
@@ -176,6 +127,7 @@ class ProductPage extends React.PureComponent {
             <div className="sideImagesContainer">
               {this.props.selectedProduct.gallery.map((prodImage, index) => (
                 <img
+                  onClick={() => this.displayImageGallery(prodImage)}
                   key={index}
                   className="sideImages"
                   src={prodImage}
@@ -188,7 +140,7 @@ class ProductPage extends React.PureComponent {
               <div className="container">
                 <img
                   className="mainImg"
-                  src={this.props.selectedProduct.gallery[0]}
+                  src={this.state.activeImage}
                   alt="product"
                 />
               </div>
@@ -199,6 +151,7 @@ class ProductPage extends React.PureComponent {
             <div className="sideImagesContainer">
               {this.props.selectedProduct.gallery.map((prodImage, index) => (
                 <img
+                  onClick={() => this.displayImageGallery(prodImage)}
                   key={index}
                   className="sideImages"
                   src={prodImage}
@@ -212,7 +165,7 @@ class ProductPage extends React.PureComponent {
                 <div className="outOfStock-PDP">OUT OF STOCK</div>
                 <img
                   className="mainImg-outOfStock"
-                  src={this.props.selectedProduct.gallery[0]}
+                  src={this.state.activeImage}
                   alt="product"
                 />
               </div>
