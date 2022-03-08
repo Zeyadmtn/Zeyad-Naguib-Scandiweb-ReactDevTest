@@ -26,7 +26,7 @@ class CurrencySelector extends React.PureComponent {
   displayCurrencyOptions() {
     if (this.state.toggleDropdown === true) {
       return (
-        <Fade>
+        <Fade down cascade>
           <div className="currencyDropDown" >
             {this.props.availableCurrencies.map((currency) => {
               return (
