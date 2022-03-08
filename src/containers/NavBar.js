@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import activeCategoryAction from "../actions/activateCategoryAction";
 import { fetchAllProducts, fetchCategoryNames } from "../actions/fetchAction";
@@ -31,14 +32,16 @@ class NavBar extends React.PureComponent {
     return (
       <div className="navBar">
         {this.props.categoryNames.map((category) => (
-          <Link to="/" key={category.name}>
-            <button
-              className="navTypeSelectBtn"
-              onClick={() => this.handleCategoryButton(category.name)}
-            >
-              {category.name}
-            </button>
-          </Link>
+          <Fade left cascade>
+            <Link to="/" key={category.name}>
+              <button
+                className="navTypeSelectBtn"
+                onClick={() => this.handleCategoryButton(category.name)}
+              >
+                {category.name}
+              </button>
+            </Link>
+          </Fade>
         ))}
 
         <div className="store_logo">
@@ -68,7 +71,7 @@ const mapStateToProps = (state) => {
     selectedProduct: state.selectProductReducer.selectedProduct,
     activeCategory: state.activeCategoryReducer.activeCategory,
     categoryNames: state.fetchReducer.categoryNames,
-    cartItems: state.cartReducer.cartItems
+    cartItems: state.cartReducer.cartItems,
   };
 };
 

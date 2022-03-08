@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Fade } from "react-reveal";
 import { Link } from "react-router-dom";
 import {
   decrementProductAction,
@@ -7,9 +8,8 @@ import {
 } from "../actions/cartActions";
 import changeAttributeAction from "../actions/changeAttributeAction";
 import GetPrice from "../components/GetPrice";
+import ProductImageSwitcher from "../components/ProductImageSwitcher";
 import "../styles/minicartOverlayStyles.css";
-import ProductImageSwitcher from "../components/ProductImageSwitcher"
-
 
 const mapStateToProps = (state) => {
   return {
@@ -129,6 +129,7 @@ class MinicartOverlay extends React.PureComponent {
 
   render() {
     return (
+      <Fade>
       <div className="minicart-box">
         <div className="minicart-title">
           My bag, {this.props.cartItems.length} item(s)
@@ -168,7 +169,7 @@ class MinicartOverlay extends React.PureComponent {
                   </div>
                 </div>
                 <div className="imgContainer">
-                <ProductImageSwitcher product={item} page="minicart"/>
+                  <ProductImageSwitcher product={item} page="minicart" />
                 </div>
               </div>
 
@@ -197,6 +198,7 @@ class MinicartOverlay extends React.PureComponent {
           <div className="checkOut">CHECKOUT</div>
         </div>
       </div>
+      </Fade>
     );
   }
 }

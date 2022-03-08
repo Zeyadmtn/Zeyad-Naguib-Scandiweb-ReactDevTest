@@ -9,6 +9,8 @@ import GetPrice from "../components/GetPrice";
 import "../styles/productPageStyles.css";
 import ProductImageSwitcher from "../components/ProductImageSwitcher"
 import "../styles/cartStyles.css";
+import Fade from "react-reveal/Fade";
+
 
 
 class Cart extends React.PureComponent {
@@ -119,6 +121,7 @@ class Cart extends React.PureComponent {
 
   render() {
     return (
+      <Fade>
       <div>
         <div className="cartTitle">CART</div>
 
@@ -173,6 +176,7 @@ class Cart extends React.PureComponent {
           {this.getTotalPrice().toFixed(2)}
         </div>
       </div>
+      </Fade>
     );
   }
 }

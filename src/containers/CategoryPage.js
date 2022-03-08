@@ -6,6 +6,8 @@ import updateSelectedProductAction from "../actions/selectProductAction";
 import GetPrice from "../components/GetPrice";
 import add_to_cart_circle from "../images/add_to_cart_circle.png";
 import "../styles/categoryPageStyles.css";
+import Fade from "react-reveal/Fade";
+
 
 class CategoryProductsPage extends React.PureComponent {
   constructor(props) {
@@ -47,11 +49,13 @@ class CategoryProductsPage extends React.PureComponent {
   render() {
     const filteredProducts = this.productCategoryFilter();
     return (
+      <Fade left cascade>
       <div>
         <h2 className="categoryName">
           {this.props.activeCategory.toUpperCase()}
         </h2>
         <div className="productDisplay">
+          
           {filteredProducts.map((singleProduct) =>
             !singleProduct.inStock ? (
               <div
@@ -117,7 +121,9 @@ class CategoryProductsPage extends React.PureComponent {
             )
           )}
         </div>
+        
       </div>
+      </Fade>
     );
   }
 }

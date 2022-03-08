@@ -7,6 +7,8 @@ import {
 import changeAttributeAction from "../actions/changeAttributeAction";
 import GetPrice from "../components/GetPrice";
 import "../styles/productPageStyles.css";
+import Fade from "react-reveal/Fade";
+
 
 const mapStateToProps = (state) => {
   return {
@@ -45,6 +47,7 @@ class ProductPage extends React.PureComponent {
     switch (attribute.type) {
       case "text":
         return (
+          
           <div className="attribute-name">
             {attribute.name.toUpperCase()}:
             <div className="attribute-text">
@@ -70,6 +73,7 @@ class ProductPage extends React.PureComponent {
               })}
             </div>
           </div>
+          
         );
 
       case "swatch":
@@ -121,6 +125,7 @@ class ProductPage extends React.PureComponent {
 
   render() {
     return (
+      <Fade left cascade>
       <div className="container">
         {this.props.selectedProduct.inStock ? (
           <div className="container">
@@ -212,6 +217,7 @@ class ProductPage extends React.PureComponent {
           </div>
         </div>
       </div>
+      </Fade>
     );
   }
 }

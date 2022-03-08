@@ -27,7 +27,7 @@ class CurrencySelector extends React.PureComponent {
     if (this.state.toggleDropdown === true) {
       return (
         <Fade>
-          <div className="currencyDropDown">
+          <div className="currencyDropDown" >
             {this.props.availableCurrencies.map((currency) => {
               return (
                 <div
@@ -57,6 +57,7 @@ class CurrencySelector extends React.PureComponent {
       <div
         className="currencySelectContainer"
         onClick={() => this.toggleDropdown()}
+        onBlur={() => {this.toggleDropdown()}}
       >
         {this.state.toggleDropdown ? (
           <img src={arrow_up} alt="arrow up" className="arrow-image"></img>
