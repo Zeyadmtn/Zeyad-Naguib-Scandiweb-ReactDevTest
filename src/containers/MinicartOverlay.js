@@ -8,6 +8,8 @@ import {
 import changeAttributeAction from "../actions/changeAttributeAction";
 import GetPrice from "../components/GetPrice";
 import "../styles/minicartOverlayStyles.css";
+import ProductImageSwitcher from "../components/ProductImageSwitcher"
+
 
 const mapStateToProps = (state) => {
   return {
@@ -165,11 +167,9 @@ class MinicartOverlay extends React.PureComponent {
                     -
                   </div>
                 </div>
-                <img
-                  src={item.gallery[0]}
-                  alt="product-image"
-                  className="prodImg"
-                />
+                <div className="imgContainer">
+                <ProductImageSwitcher product={item} page="minicart"/>
+                </div>
               </div>
 
               <div className="B-attributes">

@@ -6,8 +6,9 @@ import {
 } from "../actions/cartActions";
 import changeAttributeAction from "../actions/changeAttributeAction";
 import GetPrice from "../components/GetPrice";
-import "../styles/cartStyles.css";
 import "../styles/productPageStyles.css";
+import ProductImageSwitcher from "../components/ProductImageSwitcher"
+import "../styles/cartStyles.css";
 
 
 class Cart extends React.PureComponent {
@@ -18,6 +19,12 @@ class Cart extends React.PureComponent {
     this.handleIncrement = this.handleIncrement.bind(this);
     this.handleDecrement = this.handleDecrement.bind(this);
     this.state = { reRenderComp: true };
+  }
+
+  componentDidUpdate(){
+    this.props.cartItems.map((item) => {
+      console.log(item.gallery[0]);
+    })
   }
 
   getTotalPrice() {
@@ -100,7 +107,6 @@ class Cart extends React.PureComponent {
     }
   }
 
-
   handleIncrement(product) {
     this.props.incrementProduct(product);
     this.setState({ reRenderComp: !this.state.reRenderComp });
@@ -145,7 +151,7 @@ class Cart extends React.PureComponent {
                 </div>
 
                 <div className="imgContainer">
-                  <img src={item.gallery[0]} alt="product-image" />
+                  <ProductImageSwitcher product={item} page="cart"/>
                 </div>
               </div>
 

@@ -25,31 +25,81 @@
 }
 
 .sign {
-  border: 2px solid black;
-  padding: 0px 13px;
+  border: 1px solid black;
+  width: 43px;
+  height: 28px;
+  padding-bottom: 15px;
 }
 
 .sign:hover {
-  border: 2px solid black;
-  padding: 0px 13px;
   background-color: black;
   color: white;
 }
 
 .qtyNum {
-  font-size: 25px;
+  font-size: 24px;
   font-weight: bolder;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.itemCard img {
-  width: 150px;
-  height: 150px;
+.product-img-cart {
+  width: 141px !important;
+  height: auto !important;
+  max-height: 185px !important;
   position: absolute;
-  right: 810px;
+  right: 810px !important;
 }
 
 .totalPrice {
   font-size: 50px;
+}
+
+.arrow-left-cart {
+  z-index: 1 !important;
+  width: 6px !important;
+  height: 12px !important;
+  right: 950px !important;
+  padding-top: 60px;
+  position: absolute;
+  opacity: 0.6;
+}
+
+.arrow-right-cart {
+  z-index: 1 !important;
+  width: 6px !important;
+  height: 12px !important;
+  right: 813px !important;
+  padding-top: 60px !important;
+  position: absolute !important;
+  opacity: 0.6;
+}
+
+.arrow-left-container-cart {
+  z-index: 1;
+  right: 945px !important;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  background-color: black;
+  border-radius: 50%;
+  margin-top: 58px;
+  opacity: 0.3;
+}
+
+.arrow-right-container-cart {
+  z-index: 1;
+  right: 809px !important;
+  height: 16px !important;
+  width: 16px !important;
+  position: absolute;
+  background-color: black;
+  border-radius: 50%;
+  margin-top: 58px;
+  opacity: 0.3;
+}
+
+.arrow-right-container-cart:hover,
+.arrow-left-container-cart:hover {
+  opacity: 1 !important;
 }
