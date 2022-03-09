@@ -190,12 +190,16 @@ body {
 }
 
 .add-to-cart-button-notInStock {
-  background-color: grey;
+  background-color: rgb(78, 77, 77);
   text-align: center;
   width: 350px;
   padding: 20px 0px;
   margin-top: 50px;
   color: white;
   font-weight: 900;
+}
+
+.out-of-stock-tag {
+  text-align: center;
 }
 

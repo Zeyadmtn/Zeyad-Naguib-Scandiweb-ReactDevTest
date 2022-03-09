@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Fade from "react-reveal/Fade";
 import {
   addToCartAction,
   incrementProductAction,
@@ -7,8 +8,6 @@ import {
 import changeAttributeAction from "../actions/changeAttributeAction";
 import GetPrice from "../components/GetPrice";
 import "../styles/productPageStyles.css";
-import Fade from "react-reveal/Fade";
-
 
 const mapStateToProps = (state) => {
   return {
@@ -40,14 +39,16 @@ class ProductPage extends React.PureComponent {
     this.displayAttribute = this.displayAttribute.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.displayImageGallery = this.displayImageGallery.bind(this);
-    this.state = { reRenderState: false, activeImage: this.props.selectedProduct.gallery[0] };
+    this.state = {
+      reRenderState: false,
+      activeImage: this.props.selectedProduct.gallery[0],
+    };
   }
 
   displayAttribute(product, attribute) {
     switch (attribute.type) {
       case "text":
         return (
-          
           <div className="attribute-name">
             {attribute.name.toUpperCase()}:
             <div className="attribute-text">
@@ -73,7 +74,6 @@ class ProductPage extends React.PureComponent {
               })}
             </div>
           </div>
-          
         );
 
       case "swatch":
@@ -119,104 +119,109 @@ class ProductPage extends React.PureComponent {
     }
   }
 
-  displayImageGallery(prodImage){
-    this.setState({activeImage: prodImage});
+  displayImageGallery(prodImage) {
+    this.setState({ activeImage: prodImage });
   }
 
   render() {
     return (
       <Fade left cascade>
-      <div className="container">
-        {this.props.selectedProduct.inStock ? (
-          <div className="container">
-            <div className="sideImagesContainer">
-              {this.props.selectedProduct.gallery.map((prodImage, index) => (
-                <img
-                  onClick={() => this.displayImageGallery(prodImage)}
-                  key={index}
-                  className="sideImages"
-                  src={prodImage}
-                  alt="product"
-                />
-              ))}
-            </div>
-
-            <div className="mainImgContainer">
-              <div className="container">
-                <img
-                  className="mainImg"
-                  src={this.state.activeImage}
-                  alt="product"
-                />
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="container">
-            <div className="sideImagesContainer">
-              {this.props.selectedProduct.gallery.map((prodImage, index) => (
-                <img
-                  onClick={() => this.displayImageGallery(prodImage)}
-                  key={index}
-                  className="sideImages"
-                  src={prodImage}
-                  alt="product"
-                />
-              ))}
-            </div>
-
-            <div className="mainImgContainer">
-              <div className="container">
-                <div className="outOfStock-PDP">OUT OF STOCK</div>
-                <img
-                  className="mainImg-outOfStock"
-                  src={this.state.activeImage}
-                  alt="product"
-                />
-              </div>
-            </div>
-          </div>
-        )}
-
-        <div className="infoAndActionColumn">
-          <div className="prodBrand">{this.props.selectedProduct.brand}</div>
-          <br />
-
-          <div className="prodTitle">{this.props.selectedProduct.name}</div>
-          <br />
-
-          {this.props.selectedProduct.attributes.map((attribute, key) => {
-            return this.displayAttribute(this.props.selectedProduct, attribute);
-          })}
-
-          <div className="attribute-name">
-            PRICE: <br />
-            <GetPrice
-              singleProduct={this.props.selectedProduct}
-              currencySymbol={this.props.activeCurrencySymbol}
-            />
-          </div>
-
+        <div className="container">
           {this.props.selectedProduct.inStock ? (
-            <div
-              className="add-to-cart-button"
-              onClick={() => {
-                this.handleClick(this.props.selectedProduct);
-              }}
-            >
-              ADD TO CART
+            <div className="container">
+              <div className="sideImagesContainer">
+                {this.props.selectedProduct.gallery.map((prodImage, index) => (
+                  <img
+                    onClick={() => this.displayImageGallery(prodImage)}
+                    key={index}
+                    className="sideImages"
+                    src={prodImage}
+                    alt="product"
+                  />
+                ))}
+              </div>
+
+              <div className="mainImgContainer">
+                <div className="container">
+                  <img
+                    className="mainImg"
+                    src={this.state.activeImage}
+                    alt="product"
+                  />
+                </div>
+              </div>
             </div>
           ) : (
-            <div className="add-to-cart-button-notInStock">ADD TO CART</div>
+            <div className="container">
+              <div className="sideImagesContainer">
+                {this.props.selectedProduct.gallery.map((prodImage, index) => (
+                  <img
+                    onClick={() => this.displayImageGallery(prodImage)}
+                    key={index}
+                    className="sideImages"
+                    src={prodImage}
+                    alt="product"
+                  />
+                ))}
+              </div>
+
+              <div className="mainImgContainer">
+                <div className="container">
+                  <img
+                    className="mainImg"
+                    src={this.state.activeImage}
+                    alt="product"
+                  />
+                </div>
+              </div>
+            </div>
           )}
 
-          <div className="product-description">
-            {this.props.selectedProduct.description
-              .split(/[>,<,/,p]+/)
-              .join("")}
+          <div className="infoAndActionColumn">
+            <div className="prodBrand">{this.props.selectedProduct.brand}</div>
+            <br />
+
+            <div className="prodTitle">{this.props.selectedProduct.name}</div>
+            <br />
+
+            {this.props.selectedProduct.attributes.map((attribute, key) => {
+              return this.displayAttribute(
+                this.props.selectedProduct,
+                attribute
+              );
+            })}
+
+            <div className="attribute-name">
+              PRICE: <br />
+              <GetPrice
+                singleProduct={this.props.selectedProduct}
+                currencySymbol={this.props.activeCurrencySymbol}
+              />
+            </div>
+
+            {this.props.selectedProduct.inStock ? (
+              <div
+                className="add-to-cart-button"
+                onClick={() => {
+                  this.handleClick(this.props.selectedProduct);
+                }}
+              >
+                ADD TO CART
+              </div>
+            ) : (
+              <div>
+                <div className="add-to-cart-button-notInStock">ADD TO CART</div>
+                <p className="out-of-stock-tag">Out of Stock</p>
+              </div>
+            )}
+
+            <div className="product-description">
+              {this.props.selectedProduct.description
+                .split(/[>,<,/,p]+/)
+                .join("")}
+            </div>
           </div>
         </div>
-      </div>
       </Fade>
     );
   }

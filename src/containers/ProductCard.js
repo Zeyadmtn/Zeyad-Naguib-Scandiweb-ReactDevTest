@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import {
   addToCartAction,
   incrementProductAction,
@@ -9,14 +9,14 @@ import updateSelectedProductAction from "../actions/selectProductAction";
 import GetPrice from "../components/GetPrice";
 import add_to_cart_circle from "../images/add_to_cart_circle.png";
 import "../styles/categoryPageStyles.css";
-import {Navigate} from 'react-router-dom';
 
 class ProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.redirectToPDP = this.redirectToPDP.bind(this);
     this.handleAddToCartClick = this.handleAddToCartClick.bind(this);
-    this.state = { toggleATCIcon: true };
+    this.displayAddToCartIcon = this.displayAddToCartIcon.bind(this);
+    this.state = { toggleATCIcon: false };
     this.handleIconToggle = this.handleIconToggle.bind(this);
   }
 
@@ -25,19 +25,54 @@ class ProductCard extends React.Component {
   }
 
   handleIconToggle(bool) {
-    //this.setState({ toggleATCIcon: bool });
+    this.setState({ toggleATCIcon: bool });
   }
 
   handleAddToCartClick(product) {
+    console.log("clickhandled");
     if (product.attributes.length === 0) {
       if (product.qtyy <= 0) {
         this.props.addToCart(product);
+        this.props.incrementProduct(product);
       } else {
         this.props.incrementProduct(product);
       }
     } else {
-      this.redirectToPDP(product);
-      <Navigate  to="/product-page" />
+      this.props.updateSelectedProduct(product);
+      <Navigate to="/product-page" />;
+    }
+  }
+
+  displayAddToCartIcon(product) {
+    if (this.state.toggleATCIcon) {
+      if (product.attributes.length !== 0) {
+        this.props.updateSelectedProduct(product);
+        return (
+          <Link to="/product-page">
+            <img
+              src={add_to_cart_circle}
+              alt="addToCartButton"
+              className="atc-icon"
+            />
+          </Link>
+        )
+      } else {
+        return (
+          <img
+              src={add_to_cart_circle}
+              alt="addToCartButton"
+              className="atc-icon"
+              onClick={() => {
+                if (product.qtyy <= 0) {
+                  this.props.addToCart(product);
+                  this.props.incrementProduct(product);
+                } else {
+                  this.props.incrementProduct(product);
+                }
+              }}
+            />
+        )
+      }
     }
   }
   render() {
@@ -79,18 +114,11 @@ class ProductCard extends React.Component {
             key={product.id}
             className="product-item-container"
             onMouseOver={() => this.handleIconToggle(true)}
-            onMouseOut={() => this.handleIconToggle(false)}
+            onMouseLeave={() => this.handleIconToggle(false)}
           >
-            {this.state.toggleATCIcon ? (
-                <img
-                  src={add_to_cart_circle}
-                  alt="addToCartButton"
-                  className="atc-icon"
-                  onClick={() => this.handleAddToCartClick(product)}
-                />
-              ) : null}
+            {this.displayAddToCartIcon(product)}
+
             <Link to="/product-page">
-              
               <div className="productItem">
                 <div className="productImage">
                   <img
