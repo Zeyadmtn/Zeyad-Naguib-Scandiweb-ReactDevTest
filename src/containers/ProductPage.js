@@ -39,6 +39,8 @@ class ProductPage extends React.PureComponent {
     this.displayAttribute = this.displayAttribute.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.displayImageGallery = this.displayImageGallery.bind(this);
+    this.checkForAttributeSelection =
+      this.checkForAttributeSelection.bind(this);
     this.state = {
       reRenderState: false,
       activeImage: this.props.selectedProduct.gallery[0],
@@ -110,12 +112,39 @@ class ProductPage extends React.PureComponent {
     }
   }
 
+  checkForAttributeSelection(attributes) {
+    let allAttributesSelected = true;
+
+    attributes.map((singleAttribute) => {
+      let attributeHasSelectedItem = false;
+      singleAttribute.items.map((singleItem) => {
+        if (singleItem.selected === true) {
+          attributeHasSelectedItem = true;
+        }
+        return attributeHasSelectedItem;
+      });
+
+      if (attributeHasSelectedItem === false) {
+        allAttributesSelected = false;
+      }
+      return allAttributesSelected;
+    });
+
+    return allAttributesSelected;
+  }
+
   handleClick(product) {
-    if (product.qtyy > 0) {
-      this.props.incrementProduct(product);
-    } else {
-      this.props.incrementProduct(product);
-      this.props.addToCart(product);
+    if (product.attributes.length !== 0) {
+      if (this.checkForAttributeSelection(product.attributes) === true) {
+        if (product.qtyy > 0) {
+          this.props.incrementProduct(product);
+        } else {
+          this.props.incrementProduct(product);
+          this.props.addToCart(product);
+        }
+      } else {
+        alert("Please select all product attributes");
+      }
     }
   }
 
@@ -185,10 +214,9 @@ class ProductPage extends React.PureComponent {
             <br />
 
             {this.props.selectedProduct.attributes.map((attribute) => {
-              
               return this.displayAttribute(
                 this.props.selectedProduct,
-                attribute,
+                attribute
               );
             })}
 
