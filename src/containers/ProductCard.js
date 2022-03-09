@@ -46,7 +46,7 @@ class ProductCard extends React.Component {
   displayAddToCartIcon(product) {
     if (this.state.toggleATCIcon) {
       if (product.attributes.length !== 0) {
-        this.props.updateSelectedProduct(product);
+        this.redirectToPDP(product);
         return (
           <Link to="/product-page">
             <img
