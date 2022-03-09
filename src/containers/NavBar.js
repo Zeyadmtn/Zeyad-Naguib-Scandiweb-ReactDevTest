@@ -1,19 +1,17 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import activeCategoryAction from "../actions/activateCategoryAction";
-import { fetchAllProducts, fetchCategoryNames } from "../actions/fetchAction";
-import updateSelectedProductAction from "../actions/selectProductAction";
+import { fetchCategoryNames } from "../actions/fetchAction";
 import cart_icon from "../images/cart_icon.jpg";
 import store_logo from "../images/store_logo.png";
 import "../styles/navBarStyles.css";
 import CurrencySelector from "./CurrencySelector";
 import MinicartOverlay from "./MinicartOverlay.js";
-import ReactDOM from "react-dom";
 
-
-class NavBar extends React.PureComponent {
+class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.handleCategoryButton = this.handleCategoryButton.bind(this);
@@ -33,13 +31,14 @@ class NavBar extends React.PureComponent {
   handleClickOutside = (event) => {
     const domNode = ReactDOM.findDOMNode(this);
 
-    if (!domNode || !domNode.contains(event.target)) {
-      this.setState({
-        miniCartOverlay: false,
-      });
+    if (this.state.miniCartOverlay === true) {
+      if (!domNode || !domNode.contains(event.target)) {
+        this.setState({
+          miniCartOverlay: false,
+        });
+      }
     }
   };
-
 
   handleCategoryButton(category) {
     this.props.updateActiveCategory(category);
@@ -53,8 +52,8 @@ class NavBar extends React.PureComponent {
     return (
       <div className="navBar">
         {this.props.categoryNames.map((category) => (
-          <Fade left cascade>
-            <Link to="/" key={category.name}>
+          <Fade left cascade key={category.name}>
+            <Link to="/">
               <button
                 className="navTypeSelectBtn"
                 onClick={() => this.handleCategoryButton(category.name)}
@@ -88,26 +87,15 @@ class NavBar extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    data: state,
-    selectedProduct: state.selectProductReducer.selectedProduct,
-    activeCategory: state.activeCategoryReducer.activeCategory,
     categoryNames: state.fetchReducer.categoryNames,
-    cartItems: state.cartReducer.cartItems,
+    cartItems: state.cartReducer.cartItems
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: () => {
-      dispatch(fetchAllProducts());
-    },
-
     fetchCategories: () => {
       dispatch(fetchCategoryNames());
-    },
-
-    updateSelectedProduct: (selectedProduct) => {
-      dispatch(updateSelectedProductAction(selectedProduct));
     },
 
     updateActiveCategory: (activeCategory) => {

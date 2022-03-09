@@ -6,7 +6,7 @@ import updateSelectedProductAction from "../actions/selectProductAction";
 import "../styles/categoryPageStyles.css";
 import ProductCard from "./ProductCard";
 
-class CategoryProductsPage extends React.PureComponent {
+class CategoryProductsPage extends React.Component {
   constructor(props) {
     super(props);
     this.redirectToPDP = this.redirectToPDP.bind(this);
@@ -16,6 +16,7 @@ class CategoryProductsPage extends React.PureComponent {
   redirectToPDP(singleProduct) {
     this.props.updateSelectedProduct(singleProduct);
   }
+
 
   productCategoryFilter() {
     switch (this.props.activeCategory) {
@@ -38,7 +39,7 @@ class CategoryProductsPage extends React.PureComponent {
           </h2>
           <div className="productDisplay">
             {filteredProducts.map((singleProduct) => {
-              return <ProductCard product={singleProduct} />;
+              return <ProductCard product={singleProduct} key={singleProduct.id}/>;
             })}
           </div>
         </div>

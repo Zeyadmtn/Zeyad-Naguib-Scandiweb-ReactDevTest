@@ -1,17 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
+import Fade from "react-reveal/Fade";
 import {
   decrementProductAction,
   incrementProductAction,
 } from "../actions/cartActions";
 import changeAttributeAction from "../actions/changeAttributeAction";
 import GetPrice from "../components/GetPrice";
-import "../styles/productPageStyles.css";
-import ProductImageSwitcher from "../components/ProductImageSwitcher"
+import ProductImageSwitcher from "../components/ProductImageSwitcher";
 import "../styles/cartStyles.css";
-import Fade from "react-reveal/Fade";
-
-
+import "../styles/productPageStyles.css";
 
 class Cart extends React.PureComponent {
   constructor(props) {
@@ -21,12 +19,6 @@ class Cart extends React.PureComponent {
     this.handleIncrement = this.handleIncrement.bind(this);
     this.handleDecrement = this.handleDecrement.bind(this);
     this.state = { reRenderComp: true };
-  }
-
-  componentDidUpdate(){
-    this.props.cartItems.map((item) => {
-      console.log(item.gallery[0]);
-    })
   }
 
   getTotalPrice() {
@@ -40,6 +32,7 @@ class Cart extends React.PureComponent {
         .map((el) => {
           return (total = total + el.amount * item.qtyy);
         });
+      return item;
     });
 
     return total;
@@ -48,7 +41,7 @@ class Cart extends React.PureComponent {
     switch (attribute.type) {
       case "text":
         return (
-          <div className="attribute-name">
+          <div className="attribute-name" key={attribute.id}>
             {attribute.name.toUpperCase()}:
             <div className="attribute-text">
               {attribute.items.map((item) => {
@@ -77,12 +70,12 @@ class Cart extends React.PureComponent {
 
       case "swatch":
         return (
-          <div className="attribute-name">
+          <div className="attribute-name" key={attribute.id}>
             {attribute.name.toUpperCase()}:
             <div className="attribute-swatch">
               {attribute.items.map((item) => {
                 return item.selected ? (
-                  <span className="swatch-border">
+                  <span className="swatch-border" key={item.id}>
                     <div
                       className={"color-box-" + item.displayValue.toLowerCase()}
                       key={item.id}
@@ -122,60 +115,60 @@ class Cart extends React.PureComponent {
   render() {
     return (
       <Fade>
-      <div>
-        <div className="cartTitle">CART</div>
+        <div>
+          <div className="cartTitle">CART</div>
 
-        {this.props.cartItems.map((item, index) => {
-          return (
-            <div className="itemCard" key={index}>
-              <div className="flex-container">
-                <div>
-                  <b>{item.brand}</b>
-                  <br />
-                  {item.name}
-                </div>
-              </div>
-
-              <div className="flex-container">
-                <div className="qtyContainer">
-                  <div
-                    className="sign"
-                    onClick={() => this.handleIncrement(item)}
-                  >
-                    +
-                  </div>
-                  <div className="qtyNum">{item.qtyy}</div>
-                  <div
-                    className="sign"
-                    onClick={() => this.handleDecrement(item)}
-                  >
-                    -
+          {this.props.cartItems.map((item) => {
+            return (
+              <div className="itemCard" key={item.id}>
+                <div className="flex-container">
+                  <div>
+                    <b>{item.brand}</b>
+                    <br />
+                    {item.name}
                   </div>
                 </div>
 
-                <div className="imgContainer">
-                  <ProductImageSwitcher product={item} page="cart"/>
+                <div className="flex-container">
+                  <div className="qtyContainer">
+                    <div
+                      className="sign"
+                      onClick={() => this.handleIncrement(item)}
+                    >
+                      +
+                    </div>
+                    <div className="qtyNum">{item.qtyy}</div>
+                    <div
+                      className="sign"
+                      onClick={() => this.handleDecrement(item)}
+                    >
+                      -
+                    </div>
+                  </div>
+
+                  <div className="imgContainer">
+                    <ProductImageSwitcher product={item} page="cart" />
+                  </div>
                 </div>
-              </div>
 
-              <div className="attributes">
-                {item.attributes.map((attribute) => {
-                  return this.displayAttribute(item, attribute);
-                })}
-              </div>
+                <div className="attributes">
+                  {item.attributes.map((attribute) => {
+                    return this.displayAttribute(item, attribute);
+                  })}
+                </div>
 
-              <GetPrice
-                singleProduct={item}
-                currencySymbol={this.props.currencySymbol}
-              />
-            </div>
-          );
-        })}
-        <div className="totalPrice">
-          Total: {this.props.activeCurrencySymbol}
-          {this.getTotalPrice().toFixed(2)}
+                <GetPrice
+                  singleProduct={item}
+                  currencySymbol={this.props.currencySymbol}
+                />
+              </div>
+            );
+          })}
+          <div className="totalPrice">
+            Total: {this.props.activeCurrencySymbol}
+            {this.getTotalPrice().toFixed(2)}
+          </div>
         </div>
-      </div>
       </Fade>
     );
   }

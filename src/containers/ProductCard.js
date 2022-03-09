@@ -38,7 +38,7 @@ class ProductCard extends React.Component {
         this.props.incrementProduct(product);
       }
     } else {
-      this.props.updateSelectedProduct(product);
+      this.redirectToPDP(product);
       <Navigate to="/product-page" />;
     }
   }
@@ -90,13 +90,12 @@ class ProductCard extends React.Component {
                 <div className="productImage">
                   <div className="outOfStock">OUT OF STOCK</div>
                   <img
-                    style={{ opacity: "0.3" }}
-                    className="productImage"
+                    className="productImage-outofstock"
                     src={product.gallery[0]}
                     alt="prod-img"
                   />
                 </div>
-                <div className="productName" style={{ color: "grey" }}>
+                <div className="productName-outofstock">
                   {product.name}
                 </div>
                 <div className="productPrice">
@@ -113,7 +112,7 @@ class ProductCard extends React.Component {
             onClick={() => this.redirectToPDP(product)}
             key={product.id}
             className="product-item-container"
-            onMouseOver={() => this.handleIconToggle(true)}
+            onMouseEnter={() => this.handleIconToggle(true)}
             onMouseLeave={() => this.handleIconToggle(false)}
           >
             {this.displayAddToCartIcon(product)}

@@ -49,7 +49,7 @@ class ProductPage extends React.PureComponent {
     switch (attribute.type) {
       case "text":
         return (
-          <div className="attribute-name">
+          <div className="attribute-name" key={attribute.id}>
             {attribute.name.toUpperCase()}:
             <div className="attribute-text">
               {attribute.items.map((item) => {
@@ -78,12 +78,12 @@ class ProductPage extends React.PureComponent {
 
       case "swatch":
         return (
-          <div className="attribute-name">
+          <div className="attribute-name" key={attribute.id}>
             {attribute.name.toUpperCase()}:
             <div className="attribute-swatch">
               {attribute.items.map((item) => {
                 return item.selected ? (
-                  <span className="swatch-border">
+                  <span className="swatch-border" key={item.id}>
                     <div
                       className={"color-box-" + item.displayValue.toLowerCase()}
                       key={item.id}
@@ -130,10 +130,10 @@ class ProductPage extends React.PureComponent {
           {this.props.selectedProduct.inStock ? (
             <div className="container">
               <div className="sideImagesContainer">
-                {this.props.selectedProduct.gallery.map((prodImage, index) => (
+                {this.props.selectedProduct.gallery.map((prodImage) => (
                   <img
                     onClick={() => this.displayImageGallery(prodImage)}
-                    key={index}
+                    key={prodImage}
                     className="sideImages"
                     src={prodImage}
                     alt="product"
@@ -154,10 +154,10 @@ class ProductPage extends React.PureComponent {
           ) : (
             <div className="container">
               <div className="sideImagesContainer">
-                {this.props.selectedProduct.gallery.map((prodImage, index) => (
+                {this.props.selectedProduct.gallery.map((prodImage) => (
                   <img
                     onClick={() => this.displayImageGallery(prodImage)}
-                    key={index}
+                    key={prodImage}
                     className="sideImages"
                     src={prodImage}
                     alt="product"
@@ -184,10 +184,11 @@ class ProductPage extends React.PureComponent {
             <div className="prodTitle">{this.props.selectedProduct.name}</div>
             <br />
 
-            {this.props.selectedProduct.attributes.map((attribute, key) => {
+            {this.props.selectedProduct.attributes.map((attribute) => {
+              
               return this.displayAttribute(
                 this.props.selectedProduct,
-                attribute
+                attribute,
               );
             })}
 

@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
@@ -10,8 +10,9 @@ import Cart from "./Cart";
 import CategoryProductsPage from "./CategoryPage";
 import NavBar from "./NavBar";
 import ProductPage from "./ProductPage";
+import "../styles/fontStyles.css";
 
-class App extends React.PureComponent {
+class App extends React.Component {
 
   componentDidMount() {
     this.props.fetchData();

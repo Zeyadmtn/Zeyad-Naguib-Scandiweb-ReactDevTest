@@ -11,7 +11,7 @@ class GetPrice extends React.PureComponent {
           .map((el, index) => {
             return (
               !this.props.singleProduct.inStock ?
-              <div className="productPrice" key={index} style={{color: "grey"}}>
+              <div className="productPrice-outofstock" key={index}>
                 {el.currency.symbol}
                 {el.amount.toFixed(2)}
               </div>

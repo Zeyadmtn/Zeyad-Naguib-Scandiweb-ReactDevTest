@@ -22,7 +22,9 @@ export default function fetchReducer(
           attribute.items.map((item) => {
             return (item.selected = false);
           });
+          return attribute;
         });
+        return product;
       });
 
       return {

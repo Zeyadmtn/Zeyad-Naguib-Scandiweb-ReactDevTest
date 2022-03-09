@@ -27,11 +27,15 @@ class CurrencySelector extends React.PureComponent {
   handleClickOutside = (event) => {
     const domNode = ReactDOM.findDOMNode(this);
 
-    if (!domNode || !domNode.contains(event.target)) {
-      this.setState({
-        toggleDropdown: false,
-      });
+    if (this.state.toggleDropdown === true){
+      if (!domNode || !domNode.contains(event.target)) {
+        this.setState({
+          toggleDropdown: false,
+        });
+      }
     }
+
+    
   };
 
   toggleDropdown() {
@@ -57,6 +61,7 @@ class CurrencySelector extends React.PureComponent {
                       label: currency.label,
                     })
                   }
+                  key={currency.label}
                 >
                   {currency.symbol} &nbsp;
                   {currency.label}

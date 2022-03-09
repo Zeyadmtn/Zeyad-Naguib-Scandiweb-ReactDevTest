@@ -41,7 +41,6 @@ class MinicartOverlay extends React.PureComponent {
     this.state = { reRenderState: false };
   }
 
-
   getTotalPrice() {
     var total = 0;
 
@@ -53,6 +52,7 @@ class MinicartOverlay extends React.PureComponent {
         .map((el) => {
           return (total = total + el.amount * item.qtyy);
         });
+        return item;
     });
 
     return total;
@@ -62,7 +62,7 @@ class MinicartOverlay extends React.PureComponent {
     switch (attribute.type) {
       case "text":
         return (
-          <div className="attribute-text">
+          <div className="attribute-text" key={attribute.id}>
             {attribute.items.map((item) => {
               return item.selected ? (
                 <div className="attribute-text-item-selected" key={item.id}>
@@ -136,9 +136,9 @@ class MinicartOverlay extends React.PureComponent {
           My bag, {this.props.cartItems.length} item(s)
         </div>
 
-        {this.props.cartItems.map((item, index) => {
+        {this.props.cartItems.map((item) => {
           return (
-            <div className="B-itemCard" key={index}>
+            <div className="B-itemCard" key={item.id}>
               <div className="B-brand-name">
                 {item.brand}
                 <br />
