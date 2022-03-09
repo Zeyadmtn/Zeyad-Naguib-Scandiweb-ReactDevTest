@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import Fade from "react-reveal/Fade";
 import activeCurrencyAction from "../actions/activeCurrencyAction";
@@ -15,6 +16,24 @@ class CurrencySelector extends React.PureComponent {
     this.state = { toggleDropdown: false };
   }
 
+  componentDidMount() {
+    document.addEventListener("click", this.handleClickOutside, true);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("click", this.handleClickOutside, true);
+  }
+
+  handleClickOutside = (event) => {
+    const domNode = ReactDOM.findDOMNode(this);
+
+    if (!domNode || !domNode.contains(event.target)) {
+      this.setState({
+        toggleDropdown: false,
+      });
+    }
+  };
+
   toggleDropdown() {
     this.setState({ toggleDropdown: !this.state.toggleDropdown });
   }
@@ -27,7 +46,7 @@ class CurrencySelector extends React.PureComponent {
     if (this.state.toggleDropdown === true) {
       return (
         <Fade down cascade>
-          <div className="currencyDropDown" >
+          <div className="currencyDropDown">
             {this.props.availableCurrencies.map((currency) => {
               return (
                 <div
@@ -57,7 +76,9 @@ class CurrencySelector extends React.PureComponent {
       <div
         className="currencySelectContainer"
         onClick={() => this.toggleDropdown()}
-        onBlur={() => {this.toggleDropdown()}}
+        onBlur={() => {
+          this.toggleDropdown();
+        }}
       >
         {this.state.toggleDropdown ? (
           <img src={arrow_up} alt="arrow up" className="arrow-image"></img>

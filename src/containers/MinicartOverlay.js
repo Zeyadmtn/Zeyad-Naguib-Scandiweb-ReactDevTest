@@ -41,6 +41,7 @@ class MinicartOverlay extends React.PureComponent {
     this.state = { reRenderState: false };
   }
 
+
   getTotalPrice() {
     var total = 0;
 

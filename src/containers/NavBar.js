@@ -10,6 +10,8 @@ import store_logo from "../images/store_logo.png";
 import "../styles/navBarStyles.css";
 import CurrencySelector from "./CurrencySelector";
 import MinicartOverlay from "./MinicartOverlay.js";
+import ReactDOM from "react-dom";
+
 
 class NavBar extends React.PureComponent {
   constructor(props) {
@@ -19,6 +21,25 @@ class NavBar extends React.PureComponent {
 
     this.state = { miniCartOverlay: false };
   }
+
+  componentDidMount() {
+    document.addEventListener("click", this.handleClickOutside, true);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("click", this.handleClickOutside, true);
+  }
+
+  handleClickOutside = (event) => {
+    const domNode = ReactDOM.findDOMNode(this);
+
+    if (!domNode || !domNode.contains(event.target)) {
+      this.setState({
+        miniCartOverlay: false,
+      });
+    }
+  };
+
 
   handleCategoryButton(category) {
     this.props.updateActiveCategory(category);

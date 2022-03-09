@@ -25,8 +25,6 @@ a {
   padding: 16px;
 }
 
-
-
 .productItem:hover {
   box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
   filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
@@ -66,3 +64,15 @@ a {
   z-index: 1;
   top: 150px;
 }
+
+.atc-icon {
+  z-index: 1;
+  position: absolute;
+  bottom: 92px;
+  right: 130px;
+}
+
+.product-item-container {
+  position: relative;
+}
+
