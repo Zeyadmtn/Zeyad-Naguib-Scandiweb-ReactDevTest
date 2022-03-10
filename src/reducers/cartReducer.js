@@ -2,7 +2,15 @@ export default function cartReducer(state = { cartItems: [] }, action) {
   let newSelectedProduct = null;
   switch (action.type) {
     case "ADD_TO_CART":
-      state.cartItems.push(action.payload);
+
+      // Check if product already exists in cart:
+      const checkForExistingItem = state.cartItems.some((item) => {
+        return item.id === action.payload.id
+      })
+
+      if (!checkForExistingItem){
+        state.cartItems.push(action.payload);
+      }
       return {
         ...state,
         cartItems: [...state.cartItems],
