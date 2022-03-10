@@ -9,40 +9,19 @@ import changeAttributeAction from "../actions/changeAttributeAction";
 import GetPrice from "../components/GetPrice";
 import "../styles/productPageStyles.css";
 
-const mapStateToProps = (state) => {
-  return {
-    selectedProduct: state.selectProductReducer.selectedProduct,
-    activeCurrencySymbol: state.activeCurrencyReducer.activeCurrencySymbol,
-    cartItems: state.cartReducer.cartItems,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addToCart: (item) => {
-      dispatch(addToCartAction(item));
-    },
-
-    changeAtr: (attribute, item, product) => {
-      dispatch(changeAttributeAction(attribute, item, product));
-    },
-
-    incrementProduct: (product) => {
-      dispatch(incrementProductAction(product));
-    },
-  };
-};
-
 class ProductPage extends React.PureComponent {
   constructor(props) {
     super(props);
+
     this.displayAttribute = this.displayAttribute.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.displayImageGallery = this.displayImageGallery.bind(this);
     this.checkForAttributeSelection =
       this.checkForAttributeSelection.bind(this);
+
     this.state = {
       reRenderState: false,
+      alertMessage: false,
       activeImage: this.props.selectedProduct.gallery[0],
     };
   }
@@ -51,17 +30,20 @@ class ProductPage extends React.PureComponent {
     switch (attribute.type) {
       case "text":
         return (
-          <div className="attribute-name" key={attribute.id}>
+          <div className="attribute-name-PDP" key={attribute.id}>
             {attribute.name.toUpperCase()}:
-            <div className="attribute-text">
+            <div className="attribute-text-PDP">
               {attribute.items.map((item) => {
                 return item.selected ? (
-                  <div className="attribute-text-item-selected" key={item.id}>
+                  <div
+                    className="attribute-text-item-selected-PDP"
+                    key={item.id}
+                  >
                     {item.displayValue}
                   </div>
                 ) : (
                   <div
-                    className="attribute-text-item"
+                    className="attribute-text-item-PDP"
                     key={item.id}
                     onClick={() => {
                       this.props.changeAtr(attribute, item, product);
@@ -80,20 +62,24 @@ class ProductPage extends React.PureComponent {
 
       case "swatch":
         return (
-          <div className="attribute-name" key={attribute.id}>
+          <div className="attribute-name-PDP" key={attribute.id}>
             {attribute.name.toUpperCase()}:
-            <div className="attribute-swatch">
+            <div className="attribute-swatch-PDP">
               {attribute.items.map((item) => {
                 return item.selected ? (
-                  <span className="swatch-border" key={item.id}>
+                  <span className="swatch-border-PDP" key={item.id}>
                     <div
-                      className={"color-box-" + item.displayValue.toLowerCase()}
+                      className={
+                        "color-box-" + item.displayValue.toLowerCase() + "-PDP"
+                      }
                       key={item.id}
                     ></div>
                   </span>
                 ) : (
                   <div
-                    className={"color-box-" + item.displayValue.toLowerCase()}
+                    className={
+                      "color-box-" + item.displayValue.toLowerCase() + "-PDP"
+                    }
                     key={item.id}
                     onClick={() => {
                       this.props.changeAtr(attribute, item, product);
@@ -136,6 +122,7 @@ class ProductPage extends React.PureComponent {
   handleClick(product) {
     if (product.attributes.length !== 0) {
       if (this.checkForAttributeSelection(product.attributes) === true) {
+        this.setState({ alertMessage: false });
         if (product.qtyy > 0) {
           this.props.incrementProduct(product);
         } else {
@@ -143,11 +130,12 @@ class ProductPage extends React.PureComponent {
           this.props.addToCart(product);
         }
       } else {
-        alert("Please select all product attributes");
+        this.setState({ alertMessage: true });
       }
     }
   }
 
+  /* The user can change the main image by clicking on any one of the images on the left side */
   displayImageGallery(prodImage) {
     this.setState({ activeImage: prodImage });
   }
@@ -207,10 +195,13 @@ class ProductPage extends React.PureComponent {
           )}
 
           <div className="infoAndActionColumn">
-            <div className="prodBrand">{this.props.selectedProduct.brand}</div>
-            <br />
+            <div className="prodBrand-PDP">
+              {this.props.selectedProduct.brand}
+            </div>
 
-            <div className="prodTitle">{this.props.selectedProduct.name}</div>
+            <div className="prodTitle-PDP">
+              {this.props.selectedProduct.name}
+            </div>
             <br />
 
             {this.props.selectedProduct.attributes.map((attribute) => {
@@ -220,11 +211,18 @@ class ProductPage extends React.PureComponent {
               );
             })}
 
-            <div className="attribute-name">
+            {this.state.alertMessage && (
+              <div className="alert-message-pdp">
+                *Please select all attributes
+              </div>
+            )}
+
+            <div className="attribute-name-PDP">
               PRICE: <br />
               <GetPrice
                 singleProduct={this.props.selectedProduct}
                 currencySymbol={this.props.activeCurrencySymbol}
+                page={"PDP"}
               />
             </div>
 
@@ -255,5 +253,29 @@ class ProductPage extends React.PureComponent {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    selectedProduct: state.selectProductReducer.selectedProduct,
+    activeCurrencySymbol: state.activeCurrencyReducer.activeCurrencySymbol,
+    cartItems: state.cartReducer.cartItems,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (item) => {
+      dispatch(addToCartAction(item));
+    },
+
+    changeAtr: (attribute, item, product) => {
+      dispatch(changeAttributeAction(attribute, item, product));
+    },
+
+    incrementProduct: (product) => {
+      dispatch(incrementProductAction(product));
+    },
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

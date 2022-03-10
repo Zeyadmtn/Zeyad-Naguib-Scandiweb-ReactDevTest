@@ -11,29 +11,6 @@ import GetPrice from "../components/GetPrice";
 import ProductImageSwitcher from "../components/ProductImageSwitcher";
 import "../styles/minicartOverlayStyles.css";
 
-const mapStateToProps = (state) => {
-  return {
-    activeCurrencySymbol: state.activeCurrencyReducer.activeCurrencySymbol,
-    cartItems: state.cartReducer.cartItems,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeAtr: (attribute, item, product) => {
-      dispatch(changeAttributeAction(attribute, item, product));
-    },
-
-    incrementProduct: (product) => {
-      dispatch(incrementProductAction(product));
-    },
-
-    decrementProduct: (product) => {
-      dispatch(decrementProductAction(product));
-    },
-  };
-};
-
 class MinicartOverlay extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -203,5 +180,30 @@ class MinicartOverlay extends React.PureComponent {
     );
   }
 }
+
+
+
+const mapStateToProps = (state) => {
+  return {
+    activeCurrencySymbol: state.activeCurrencyReducer.activeCurrencySymbol,
+    cartItems: state.cartReducer.cartItems,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeAtr: (attribute, item, product) => {
+      dispatch(changeAttributeAction(attribute, item, product));
+    },
+
+    incrementProduct: (product) => {
+      dispatch(incrementProductAction(product));
+    },
+
+    decrementProduct: (product) => {
+      dispatch(decrementProductAction(product));
+    },
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MinicartOverlay);

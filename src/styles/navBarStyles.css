@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Roboto&family=Roboto+Condensed:wght@700&family=Source+Sans+Pro&display=swap");
+
+
 * {
   font-family: "Raleway", sans-serif;
 }
@@ -151,7 +154,7 @@ body {
   text-align: left;
   font-size: 18px;
   margin-bottom: 20px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .currency:hover {
@@ -159,7 +162,7 @@ body {
 }
 .active-currency {
   padding-left: 20px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .arrow-image {

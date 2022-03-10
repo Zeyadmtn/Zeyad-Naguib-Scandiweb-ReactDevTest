@@ -10,7 +10,6 @@ import Cart from "./Cart";
 import CategoryProductsPage from "./CategoryPage";
 import NavBar from "./NavBar";
 import ProductPage from "./ProductPage";
-import "../styles/fontStyles.css";
 
 class App extends React.Component {
 

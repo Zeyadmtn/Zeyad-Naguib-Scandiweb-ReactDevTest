@@ -43,6 +43,9 @@ class ProductCard extends React.Component {
     }
   }
 
+  /* The add-to-cart icon button only adds to cart if the product
+     has no attributes, otherwise, the button sends the user to the
+     item product page */
   displayAddToCartIcon(product) {
     if (this.state.toggleATCIcon) {
       if (product.attributes.length !== 0) {
@@ -102,6 +105,7 @@ class ProductCard extends React.Component {
                   <GetPrice
                     singleProduct={product}
                     currencySymbol={this.props.activeCurrencySymbol}
+                    page={"category-page"}
                   />
                 </div>
               </Link>
@@ -131,6 +135,7 @@ class ProductCard extends React.Component {
                   <GetPrice
                     singleProduct={product}
                     currencySymbol={this.props.activeCurrencySymbol}
+                    page={"category-page"}
                   />
                 </div>
               </div>
