@@ -10,7 +10,6 @@ class ProductImageSwitcher extends React.Component {
     this.state = { item: this.props.product, currentImageIndex: 0 };
   }
 
-
   handleImageSwitching(direction) {
     switch (direction) {
       case "left":
@@ -35,20 +34,31 @@ class ProductImageSwitcher extends React.Component {
   render() {
     return (
       <div>
-        <div className={"arrow-left-container-" + this.props.page} onClick={() => this.handleImageSwitching("left")}></div>
-        <img
-          src={arrow_left}
-          alt="arrow-left"
-          className={"arrow-left-" + this.props.page}
-          onClick={() => this.handleImageSwitching("left")}
-        />
-        <div className={"arrow-right-container-" + this.props.page} onClick={() => this.handleImageSwitching("right")}></div>
-        <img
-          src={arrow_right}
-          alt="arrow-right"
-          className={"arrow-right-" + this.props.page}
-          onClick={() => this.handleImageSwitching("right")}
-        />
+        {this.props.imageSwitching && (
+          <div>
+            <div
+              className={"arrow-left-container-" + this.props.page}
+              onClick={() => this.handleImageSwitching("left")}
+            ></div>
+
+            <img
+              src={arrow_left}
+              alt="arrow-left"
+              className={"arrow-left-" + this.props.page}
+              onClick={() => this.handleImageSwitching("left")}
+            />
+            <div
+              className={"arrow-right-container-" + this.props.page}
+              onClick={() => this.handleImageSwitching("right")}
+            ></div>
+            <img
+              src={arrow_right}
+              alt="arrow-right"
+              className={"arrow-right-" + this.props.page}
+              onClick={() => this.handleImageSwitching("right")}
+            />
+          </div>
+        )}
         <img
           src={this.state.item.gallery[this.state.currentImageIndex]}
           alt="product"
@@ -58,7 +68,5 @@ class ProductImageSwitcher extends React.Component {
     );
   }
 }
-
-
 
 export default ProductImageSwitcher;

@@ -147,7 +147,7 @@ class Cart extends React.PureComponent {
                   </div>
 
                   <div className="imgContainer">
-                    <ProductImageSwitcher product={item} page="cart" />
+                    <ProductImageSwitcher product={item} page="cart" imageSwitching={true}/>
                   </div>
                 </div>
 

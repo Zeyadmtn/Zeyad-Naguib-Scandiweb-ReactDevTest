@@ -9,6 +9,8 @@ import {
 import changeAttributeAction from "../actions/changeAttributeAction";
 import GetPrice from "../components/GetPrice";
 import ProductImageSwitcher from "../components/ProductImageSwitcher";
+import minus_square from "../images/minus_square.png";
+import plus_square from "../images/plus_square.png";
 import "../styles/minicartOverlayStyles.css";
 
 class MinicartOverlay extends React.PureComponent {
@@ -29,7 +31,7 @@ class MinicartOverlay extends React.PureComponent {
         .map((el) => {
           return (total = total + el.amount * item.qtyy);
         });
-        return item;
+      return item;
     });
 
     return total;
@@ -39,15 +41,18 @@ class MinicartOverlay extends React.PureComponent {
     switch (attribute.type) {
       case "text":
         return (
-          <div className="attribute-text" key={attribute.id}>
+          <div className="attribute-text-minicart" key={attribute.id}>
             {attribute.items.map((item) => {
               return item.selected ? (
-                <div className="attribute-text-item-selected" key={item.id}>
+                <div
+                  className="attribute-text-item-selected-minicart"
+                  key={item.id}
+                >
                   {item.displayValue}
                 </div>
               ) : (
                 <div
-                  className="attribute-text-item"
+                  className="attribute-text-item-minicart"
                   key={item.id}
                   onClick={() => {
                     this.props.changeAtr(attribute, item, product);
@@ -63,18 +68,24 @@ class MinicartOverlay extends React.PureComponent {
 
       case "swatch":
         return (
-          <div className="attribute-swatch">
+          <div className="attribute-swatch-minicart" key={attribute.id}>
             {attribute.items.map((item) => {
               return item.selected ? (
-                <span className="swatch-border">
+                <span className="swatch-border-minicart" key={item.id}>
                   <div
-                    className={"color-box-" + item.displayValue.toLowerCase()}
+                    className={
+                      "color-box-" +
+                      item.displayValue.toLowerCase() +
+                      "-minicart"
+                    }
                     key={item.id}
                   ></div>
                 </span>
               ) : (
                 <div
-                  className={"color-box-" + item.displayValue.toLowerCase()}
+                  className={
+                    "color-box-" + item.displayValue.toLowerCase() + "-minicart"
+                  }
                   key={item.id}
                   onClick={() => {
                     this.props.changeAtr(attribute, item, product);
@@ -108,80 +119,87 @@ class MinicartOverlay extends React.PureComponent {
   render() {
     return (
       <Fade>
-      <div className="minicart-box">
-        <div className="minicart-title">
-          My bag, {this.props.cartItems.length} item(s)
-        </div>
+        <div className="minicart-box">
+          <div className="minicart-title">
+            <span className="minicart-title-mybag">My bag, </span>
+            {this.props.cartItems.length} item(s)
+          </div>
 
-        {this.props.cartItems.map((item) => {
-          return (
-            <div className="B-itemCard" key={item.id}>
-              <div className="B-brand-name">
-                {item.brand}
-                <br />
-                <div className="B-item-name"></div>
-                {item.name}
+          {this.props.cartItems.map((item) => {
+            return (
+              <div className="itemCard-minicart" key={item.id}>
+                <div className="brand-name-minicart">
+                  {item.brand}
+                  <br />
+                  <div className="item-name-minicart"></div>
+                  {item.name}
 
-                <div className="item-price">
-                  <GetPrice
-                    singleProduct={item}
-                    currencySymbol={this.props.activeCurrencySymbol}
-                  />
-                </div>
-              </div>
-
-              <div className="right-items">
-                <div className="B-qtyContainer">
-                  <div
-                    className="B-sign"
-                    onClick={() => this.handleIncrement(item)}
-                  >
-                    +
-                  </div>
-                  <div className="B-qtyNum">{item.qtyy}</div>
-                  <div
-                    className="B-sign"
-                    onClick={() => this.handleDecrement(item)}
-                  >
-                    -
+                  <div className="item-price-minicart">
+                    <GetPrice
+                      singleProduct={item}
+                      currencySymbol={this.props.activeCurrencySymbol}
+                      page={"minicart"}
+                    />
                   </div>
                 </div>
-                <div className="imgContainer">
-                  <ProductImageSwitcher product={item} page="minicart" />
+
+                <div className="right-items-minicart">
+                  <div className="qtyContainer-minicart">
+                    <img
+                      src={plus_square}
+                      alt="Plus Square"
+                      className="sign-plus-minicart"
+                      onClick={() => this.handleIncrement(item)}
+                    />
+                    <div className="qtyNum-minicart">{item.qtyy}</div>
+                    <img
+                      src={minus_square}
+                      alt="Minus Square"
+                      className="sign-minus-minicart"
+                      onClick={() => this.handleDecrement(item)}
+                    />
+                  </div>
+
+                  {/* Switching images for a product can be activated in the minicart overlay
+                by setting the imageSwitching={true} below */}
+                  <div className="imgContainer-minicart">
+                    <ProductImageSwitcher
+                      product={item}
+                      page="minicart"
+                      imageSwitching={false}
+                    />
+                  </div>
+                </div>
+
+                <div className="attributes-minicart">
+                  {item.attributes.map((attribute) => {
+                    return this.displayAttribute(item, attribute);
+                  })}
                 </div>
               </div>
+            );
+          })}
 
-              <div className="B-attributes">
-                {item.attributes.map((attribute) => {
-                  return this.displayAttribute(item, attribute);
-                })}
-              </div>
-            </div>
-          );
-        })}
+          <div className="total-price-container-minicart">
+            <div className="total-price-title-minicart">Total</div>
+            <span className="total-price-minicart">
+              {this.props.activeCurrencySymbol}
+              {this.getTotalPrice().toFixed(2)}
+            </span>
+          </div>
 
-        <div className="total-price-container">
-          <div className="total-price-title">Total</div>
-          <span className="total-price">
-            {this.props.activeCurrencySymbol}
-            {this.getTotalPrice()}
-          </span>
+          <div className="minicartButtons">
+            <Link to="/cart">
+              <div className="view-bag-button"><div className="view-bag-button-text">VIEW BAG</div></div>
+            </Link>
+
+            <div className="checkout-button"><div className="checkout-button-text">CHECKOUT</div></div>
+          </div>
         </div>
-
-        <div className="minicartButtons">
-          <Link to="/cart">
-            <div className="viewBagButton">VIEW BAG</div>
-          </Link>
-
-          <div className="checkOut">CHECKOUT</div>
-        </div>
-      </div>
       </Fade>
     );
   }
 }
-
-
 
 const mapStateToProps = (state) => {
   return {
