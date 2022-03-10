@@ -88,7 +88,7 @@ class NavBar extends React.Component {
 const mapStateToProps = (state) => {
   return {
     categoryNames: state.fetchReducer.categoryNames,
-    cartItems: state.cartReducer.cartItems
+    cartItems: state.cartReducer.cartItems,
   };
 };
 

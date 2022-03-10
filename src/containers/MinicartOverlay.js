@@ -190,10 +190,14 @@ class MinicartOverlay extends React.PureComponent {
 
           <div className="minicartButtons">
             <Link to="/cart">
-              <div className="view-bag-button"><div className="view-bag-button-text">VIEW BAG</div></div>
+              <div className="view-bag-button">
+                <div className="view-bag-button-text">VIEW BAG</div>
+              </div>
             </Link>
 
-            <div className="checkout-button"><div className="checkout-button-text">CHECKOUT</div></div>
+            <div className="checkout-button">
+              <div className="checkout-button-text">CHECKOUT</div>
+            </div>
           </div>
         </div>
       </Fade>

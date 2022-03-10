@@ -1,4 +1,4 @@
-export default function cartReducer(state = { cartItems: []}, action) {
+export default function cartReducer(state = { cartItems: [] }, action) {
   let newSelectedProduct = null;
   switch (action.type) {
     case "ADD_TO_CART":

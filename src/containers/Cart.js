@@ -8,6 +8,8 @@ import {
 import changeAttributeAction from "../actions/changeAttributeAction";
 import GetPrice from "../components/GetPrice";
 import ProductImageSwitcher from "../components/ProductImageSwitcher";
+import minus_square_bigger from "../images/minus_square_bigger.png";
+import plus_square_bigger from "../images/plus_square_bigger.png";
 import "../styles/cartStyles.css";
 import "../styles/productPageStyles.css";
 
@@ -41,17 +43,19 @@ class Cart extends React.PureComponent {
     switch (attribute.type) {
       case "text":
         return (
-          <div className="attribute-name" key={attribute.id}>
-            {attribute.name.toUpperCase()}:
-            <div className="attribute-text">
+          <div className="attribute-name-cart" key={attribute.id}>
+            <div className="attribute-text-cart">
               {attribute.items.map((item) => {
                 return item.selected ? (
-                  <div className="attribute-text-item-selected" key={item.id}>
+                  <div
+                    className="attribute-text-item-selected-cart"
+                    key={item.id}
+                  >
                     {item.displayValue}
                   </div>
                 ) : (
                   <div
-                    className="attribute-text-item"
+                    className="attribute-text-item-cart"
                     key={item.id}
                     onClick={() => {
                       this.props.changeAtr(attribute, item, product);
@@ -70,20 +74,23 @@ class Cart extends React.PureComponent {
 
       case "swatch":
         return (
-          <div className="attribute-name" key={attribute.id}>
-            {attribute.name.toUpperCase()}:
-            <div className="attribute-swatch">
+          <div className="attribute-name-cart" key={attribute.id}>
+            <div className="attribute-swatch-cart">
               {attribute.items.map((item) => {
                 return item.selected ? (
-                  <span className="swatch-border" key={item.id}>
+                  <span className="swatch-border-cart" key={item.id}>
                     <div
-                      className={"color-box-" + item.displayValue.toLowerCase()}
+                      className={
+                        "color-box-" + item.displayValue.toLowerCase() + "-cart"
+                      }
                       key={item.id}
                     ></div>
                   </span>
                 ) : (
                   <div
-                    className={"color-box-" + item.displayValue.toLowerCase()}
+                    className={
+                      "color-box-" + item.displayValue.toLowerCase() + "-cart"
+                    }
                     key={item.id}
                     onClick={() => {
                       this.props.changeAtr(attribute, item, product);
@@ -114,47 +121,50 @@ class Cart extends React.PureComponent {
 
   render() {
     return (
-      <Fade>
+      <Fade bottom cascade>
         <div>
           <div className="cartTitle">CART</div>
 
           {this.props.cartItems.map((item) => {
             return (
-              <div className="itemCard" key={item.id}>
-                <div className="flex-container">
-                  <div>
-                    <b>{item.brand}</b>
-                    <br />
-                    {item.name}
+              <div className="itemCard-cart" key={item.id}>
+                <div className="flex-container-column-cart">
+                  <div className="brand-name-cart">{item.brand}</div>
+                  <br />
+                  <div className="item-name-cart"> {item.name}</div>
+                  <GetPrice
+                    singleProduct={item}
+                    currencySymbol={this.props.activeCurrencySymbol}
+                    page={"cart"}
+                  />
+                  <div className="attributes-cart">
+                    {item.attributes.map((attribute) => {
+                      return this.displayAttribute(item, attribute);
+                    })}
                   </div>
                 </div>
+                <div className="flex-container-column-cart">
+                  <img
+                    src={plus_square_bigger}
+                    className="sign-plus-cart"
+                    onClick={() => this.handleIncrement(item)}
+                    alt="Plus Square"
+                  ></img>
+                  <div className="qtyNum-cart">{item.qtyy}</div>
+                  <img
+                    src={minus_square_bigger}
+                    className="sign-minus-cart"
+                    onClick={() => this.handleDecrement(item)}
+                    alt="Minus Square"
+                  ></img>
 
-                <div className="flex-container">
-                  <div className="qtyContainer">
-                    <div
-                      className="sign"
-                      onClick={() => this.handleIncrement(item)}
-                    >
-                      +
-                    </div>
-                    <div className="qtyNum">{item.qtyy}</div>
-                    <div
-                      className="sign"
-                      onClick={() => this.handleDecrement(item)}
-                    >
-                      -
-                    </div>
+                  <div className="imgContainer-cart">
+                    <ProductImageSwitcher
+                      product={item}
+                      page="cart"
+                      imageSwitching={true}
+                    />
                   </div>
-
-                  <div className="imgContainer">
-                    <ProductImageSwitcher product={item} page="cart" imageSwitching={true}/>
-                  </div>
-                </div>
-
-                <div className="attributes">
-                  {item.attributes.map((attribute) => {
-                    return this.displayAttribute(item, attribute);
-                  })}
                 </div>
 
                 <GetPrice
@@ -164,9 +174,12 @@ class Cart extends React.PureComponent {
               </div>
             );
           })}
-          <div className="totalPrice">
-            Total: {this.props.activeCurrencySymbol}
-            {this.getTotalPrice().toFixed(2)}
+          <div className="total-price-cart">
+            <div className="total-price-title-cart">Total:</div>
+            <div className="total-price-number-cart">
+              {this.props.activeCurrencySymbol}
+              {this.getTotalPrice().toFixed(2)}
+            </div>
           </div>
         </div>
       </Fade>

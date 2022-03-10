@@ -58,23 +58,23 @@ class ProductCard extends React.Component {
               className="atc-icon"
             />
           </Link>
-        )
+        );
       } else {
         return (
           <img
-              src={add_to_cart_circle}
-              alt="addToCartButton"
-              className="atc-icon"
-              onClick={() => {
-                if (product.qtyy <= 0) {
-                  this.props.addToCart(product);
-                  this.props.incrementProduct(product);
-                } else {
-                  this.props.incrementProduct(product);
-                }
-              }}
-            />
-        )
+            src={add_to_cart_circle}
+            alt="addToCartButton"
+            className="atc-icon"
+            onClick={() => {
+              if (product.qtyy <= 0) {
+                this.props.addToCart(product);
+                this.props.incrementProduct(product);
+              } else {
+                this.props.incrementProduct(product);
+              }
+            }}
+          />
+        );
       }
     }
   }
@@ -98,9 +98,7 @@ class ProductCard extends React.Component {
                     alt="prod-img"
                   />
                 </div>
-                <div className="productName-outofstock">
-                  {product.name}
-                </div>
+                <div className="productName-outofstock">{product.name}</div>
                 <div className="productPrice">
                   <GetPrice
                     singleProduct={product}

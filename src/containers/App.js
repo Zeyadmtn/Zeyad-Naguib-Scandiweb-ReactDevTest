@@ -12,7 +12,6 @@ import NavBar from "./NavBar";
 import ProductPage from "./ProductPage";
 
 class App extends React.Component {
-
   componentDidMount() {
     this.props.fetchData();
     this.props.fetchCategories();

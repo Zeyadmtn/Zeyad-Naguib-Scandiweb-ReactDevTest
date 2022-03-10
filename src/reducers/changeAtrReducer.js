@@ -8,7 +8,6 @@ export default function changeAtrReducer(state = 0, action) {
           attribute.items.map((item) => {
             return (item.selected = false);
           });
-          
         }
 
         attribute.items
@@ -19,7 +18,7 @@ export default function changeAtrReducer(state = 0, action) {
             return (el.selected = true);
           });
 
-          return attribute;
+        return attribute;
       });
 
       return {

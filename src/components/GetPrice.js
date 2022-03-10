@@ -9,14 +9,15 @@ class GetPrice extends React.PureComponent {
             return price.currency.symbol === this.props.currencySymbol;
           })
           .map((el, index) => {
-            return (
-              !this.props.singleProduct.inStock ?
-              <div className={"product-price-outofstock-" + this.props.page} key={index}>
-                
+            return !this.props.singleProduct.inStock ? (
+              <div
+                className={"product-price-outofstock-" + this.props.page}
+                key={index}
+              >
                 {el.currency.symbol}
                 {el.amount.toFixed(2)}
               </div>
-              :
+            ) : (
               <div className={"product-price-" + this.props.page} key={index}>
                 {el.currency.symbol}
                 {el.amount.toFixed(2)}

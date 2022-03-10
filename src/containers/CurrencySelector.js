@@ -27,15 +27,13 @@ class CurrencySelector extends React.PureComponent {
   handleClickOutside = (event) => {
     const domNode = ReactDOM.findDOMNode(this);
 
-    if (this.state.toggleDropdown === true){
+    if (this.state.toggleDropdown === true) {
       if (!domNode || !domNode.contains(event.target)) {
         this.setState({
           toggleDropdown: false,
         });
       }
     }
-
-    
   };
 
   toggleDropdown() {
