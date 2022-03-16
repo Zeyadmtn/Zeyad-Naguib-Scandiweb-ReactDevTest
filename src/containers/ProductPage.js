@@ -107,17 +107,16 @@ class ProductPage extends React.PureComponent {
         attribute.items.map((item) => {
           return (item.selected = false);
         });
+        attribute.items
+          .filter((item) => {
+            return item.id === chosenItem.id;
+          })
+          .map((el) => {
+            return (el.selected = true);
+          });
+
+        return attribute;
       }
-
-      attribute.items
-        .filter((item) => {
-          return item.id === chosenItem.id;
-        })
-        .map((el) => {
-          return (el.selected = true);
-        });
-
-      return attribute;
     });
 
     let selectedAttributes = "";
