@@ -21,14 +21,14 @@ class NavBar extends React.Component {
   }
 
   componentDidUpdate() {
-    if(this.state.pathname !== this.props.location.pathname) {
-        this.setState({
-           miniCartOverlay: false,
+    if (this.state.pathname !== this.props.location.pathname) {
+      this.setState({
+        miniCartOverlay: false,
 
-            pathname: this.props.location.pathname
-        })
+        pathname: this.props.location.pathname,
+      });
     }
-}
+  }
   componentDidMount() {
     document.addEventListener("click", this.handleClickOutside, true);
   }
@@ -44,7 +44,6 @@ class NavBar extends React.Component {
       if (!domNode || !domNode.contains(event.target)) {
         this.setState({
           miniCartOverlay: false,
-
         });
       }
     }
@@ -78,7 +77,7 @@ class NavBar extends React.Component {
           <img src={store_logo} alt="store_logo" />
         </div>
 
-        <CurrencySelector minicartOverlay={this.state.miniCartOverlay}/>
+        <CurrencySelector minicartOverlay={this.state.miniCartOverlay} />
 
         <div
           onClick={() => {

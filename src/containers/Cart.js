@@ -127,7 +127,7 @@ class Cart extends React.PureComponent {
 
           {this.props.cartItems.map((item) => {
             return (
-              <div className="itemCard-cart" key={item.id}>
+              <div className="itemCard-cart" key={item.cartID}>
                 <div className="flex-container-column-cart">
                   <div className="brand-name-cart">{item.brand}</div>
                   <br />

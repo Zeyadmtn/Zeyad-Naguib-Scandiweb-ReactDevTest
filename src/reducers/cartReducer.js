@@ -42,7 +42,6 @@ export default function cartReducer(state = { cartItems: [] }, action) {
           ...state,
           cartItems: newCartItems,
         };
-
       } else {
         decrementedProduct.qtyy -= 1;
 

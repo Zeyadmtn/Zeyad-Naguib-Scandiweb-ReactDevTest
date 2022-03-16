@@ -28,8 +28,6 @@ class ProductPage extends React.PureComponent {
     };
   }
 
-
-  
   displayAttribute(attribute) {
     switch (attribute.type) {
       case "text":
@@ -119,6 +117,7 @@ class ProductPage extends React.PureComponent {
 
         return attribute;
       }
+      return attribute;
     });
 
     let selectedAttributes = "";
@@ -127,6 +126,7 @@ class ProductPage extends React.PureComponent {
         if (item.selected === true) {
           return (selectedAttributes += item.id);
         }
+        return item;
       });
       return selectedAttributes;
     });

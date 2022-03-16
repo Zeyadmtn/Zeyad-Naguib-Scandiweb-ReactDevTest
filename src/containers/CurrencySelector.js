@@ -38,7 +38,7 @@ class CurrencySelector extends React.PureComponent {
 
   toggleDropdown() {
     if (this.props.miniCartOverlay === true) {
-      console.log("truwe")
+      console.log("truwe");
       this.setState({ toggleDropdown: false });
     } else {
       this.setState({ toggleDropdown: !this.props.toggleDropdown });

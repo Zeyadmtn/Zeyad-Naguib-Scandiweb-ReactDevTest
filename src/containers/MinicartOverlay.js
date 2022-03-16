@@ -51,7 +51,10 @@ class MinicartOverlay extends React.PureComponent {
                   {item.displayValue}
                 </div>
               ) : (
-                <div className="attribute-text-item-minicart" key={item.id}>
+                <div
+                  className="attribute-text-item-minicart"
+                  key={attribute.id}
+                >
                   {item.displayValue}
                 </div>
               );
@@ -71,7 +74,6 @@ class MinicartOverlay extends React.PureComponent {
                       item.displayValue.toLowerCase() +
                       "-minicart"
                     }
-                    key={item.id}
                   ></div>
                 </span>
               ) : (

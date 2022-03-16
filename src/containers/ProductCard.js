@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {
   addToCartAction,
   incrementProductAction,
@@ -39,7 +39,7 @@ class ProductCard extends React.Component {
       }
     } else {
       this.redirectToPDP(product);
-      // <Navigate to="/product-page" />;
+      <Redirect to="/product-page" />;
     }
   }
 
