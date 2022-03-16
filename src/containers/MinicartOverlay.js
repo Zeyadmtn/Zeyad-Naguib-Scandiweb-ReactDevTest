@@ -51,14 +51,7 @@ class MinicartOverlay extends React.PureComponent {
                   {item.displayValue}
                 </div>
               ) : (
-                <div
-                  className="attribute-text-item-minicart"
-                  key={item.id}
-                  onClick={() => {
-                    this.props.changeAtr(attribute, item, product);
-                    this.setState({ reRenderState: !this.state.reRenderState });
-                  }}
-                >
+                <div className="attribute-text-item-minicart" key={item.id}>
                   {item.displayValue}
                 </div>
               );
@@ -87,10 +80,6 @@ class MinicartOverlay extends React.PureComponent {
                     "color-box-" + item.displayValue.toLowerCase() + "-minicart"
                   }
                   key={item.id}
-                  onClick={() => {
-                    this.props.changeAtr(attribute, item, product);
-                    this.setState({ reRenderState: !this.state.reRenderState });
-                  }}
                 ></div>
               );
             })}
@@ -127,7 +116,7 @@ class MinicartOverlay extends React.PureComponent {
 
           {this.props.cartItems.map((item) => {
             return (
-              <div className="itemCard-minicart" key={item.id}>
+              <div className="itemCard-minicart" key={item.cartID}>
                 <div className="brand-name-minicart">
                   {item.brand}
                   <br />

@@ -1,17 +1,6 @@
 export default function cartReducer(state = { cartItems: [] }, action) {
-  let newSelectedProduct = null;
   switch (action.type) {
     case "ADD_TO_CART":
-
-      // Check if product already exists in cart:
-      // const checkForExistingItem = state.cartItems.some((item) => {
-      //   return item.id === action.payload.id
-      // })
-
-      // if (!checkForExistingItem){
-      //   state.cartItems.push(action.payload);
-      // }
-
       state.cartItems.push(action.payload);
       return {
         ...state,
@@ -19,30 +8,55 @@ export default function cartReducer(state = { cartItems: [] }, action) {
       };
 
     case "INCREMENT_ITEM":
-      newSelectedProduct = action.payload;
-      newSelectedProduct.qtyy += 1;
+      let incrementedProduct = state.cartItems.filter(
+        (item) => item.cartID === action.payload.cartID
+      );
+
+      incrementedProduct = incrementedProduct[0];
+      incrementedProduct.qtyy += 1;
+
+      state.cartItems.map((item) => {
+        if (item.cartID === incrementedProduct.cartID) {
+          return (item = incrementedProduct);
+        }
+        return item;
+      });
 
       return {
         ...state,
-        selectedProduct: newSelectedProduct,
+        cartItems: [...state.cartItems],
       };
 
     case "DECREMENT_ITEM":
-      newSelectedProduct = action.payload;
+      let decrementedProduct = state.cartItems.filter(
+        (item) => item.cartID === action.payload.cartID
+      );
 
-      if (newSelectedProduct.qtyy === 1) {
-        const newCartItems = state.cartItems.filter(
-          (product) => product.id !== action.payload.id
+      decrementedProduct = decrementedProduct[0];
+
+      if (decrementedProduct.qtyy === 1) {
+        let newCartItems = state.cartItems.filter(
+          (item) => item.cartID !== action.payload.cartID
         );
+
         return {
           ...state,
           cartItems: newCartItems,
         };
+
       } else {
-        newSelectedProduct.qtyy -= 1;
+        decrementedProduct.qtyy -= 1;
+
+        state.cartItems.map((item) => {
+          if (item.cartID === decrementedProduct.cartID) {
+            return (item = decrementedProduct);
+          }
+          return item;
+        });
+
         return {
           ...state,
-          selectedProduct: newSelectedProduct,
+          cartItems: [...state.cartItems],
         };
       }
 

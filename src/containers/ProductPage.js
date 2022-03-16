@@ -101,9 +101,9 @@ class ProductPage extends React.PureComponent {
   }
 
   handleAttributeChange(chosenAttribute, chosenItem) {
-    let tempProduct = this.state.localProduct;
+    let tempProduct = JSON.parse(JSON.stringify(this.state.localProduct));
     tempProduct.attributes.map((attribute) => {
-      if (attribute === chosenAttribute) {
+      if (attribute.id === chosenAttribute.id) {
         attribute.items.map((item) => {
           return (item.selected = false);
         });
@@ -111,7 +111,7 @@ class ProductPage extends React.PureComponent {
 
       attribute.items
         .filter((item) => {
-          return item === chosenItem;
+          return item.id === chosenItem.id;
         })
         .map((el) => {
           return (el.selected = true);
@@ -120,7 +120,19 @@ class ProductPage extends React.PureComponent {
       return attribute;
     });
 
-    this.setState({ ...this.state, localProduct: tempProduct });
+    let selectedAttributes = "";
+    this.state.localProduct.attributes.map((attribute) => {
+      attribute.items.map((item) => {
+        if (item.selected === true) {
+          return (selectedAttributes += item.id);
+        }
+      });
+      return selectedAttributes;
+    });
+
+    tempProduct.cartID = tempProduct.id + selectedAttributes;
+
+    this.setState({ ...this.state, localProduct: { ...tempProduct } });
   }
 
   checkForAttributeSelection(attributes) {
@@ -144,16 +156,26 @@ class ProductPage extends React.PureComponent {
     return allAttributesSelected;
   }
 
-  handleClick(product) {
-    if (product.attributes.length !== 0) {
-      if (this.checkForAttributeSelection(product.attributes) === true) {
-        this.setState({ alertMessage: false });
-        if (product.qtyy > 0) {
-          this.props.incrementProduct(product);
+  handleClick() {
+    if (this.state.localProduct.attributes.length !== 0) {
+      if (
+        this.checkForAttributeSelection(this.state.localProduct.attributes) ===
+        true
+      ) {
+        let filteredItemArr = this.props.cartItems.filter(
+          (item) => item.cartID === this.state.localProduct.cartID
+        );
+
+        let tempProduct = JSON.parse(JSON.stringify(this.state.localProduct));
+
+        if (filteredItemArr.length > 0) {
+          this.props.incrementProduct(tempProduct);
         } else {
-          this.props.incrementProduct(product);
-          this.props.addToCart(product);
+          this.props.addToCart(tempProduct);
+          this.props.incrementProduct(tempProduct);
         }
+
+        this.setState({ alertMessage: false });
       } else {
         this.setState({ alertMessage: true });
       }
@@ -248,7 +270,7 @@ class ProductPage extends React.PureComponent {
               <div
                 className="add-to-cart-button"
                 onClick={() => {
-                  this.handleClick(this.state.localProduct);
+                  this.handleClick();
                 }}
               >
                 ADD TO CART
