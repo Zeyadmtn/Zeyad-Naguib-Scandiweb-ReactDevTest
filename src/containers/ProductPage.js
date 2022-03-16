@@ -18,15 +18,17 @@ class ProductPage extends React.PureComponent {
     this.displayImageGallery = this.displayImageGallery.bind(this);
     this.checkForAttributeSelection =
       this.checkForAttributeSelection.bind(this);
+    this.handleAttributeChange = this.handleAttributeChange.bind(this);
 
     this.state = {
       reRenderState: false,
       alertMessage: false,
+      localProduct: this.props.selectedProduct,
       activeImage: this.props.selectedProduct.gallery[0],
     };
   }
 
-  displayAttribute(product, attribute) {
+  displayAttribute(attribute) {
     switch (attribute.type) {
       case "text":
         return (
@@ -46,7 +48,7 @@ class ProductPage extends React.PureComponent {
                     className="attribute-text-item-PDP"
                     key={item.id}
                     onClick={() => {
-                      this.props.changeAtr(attribute, item, product);
+                      this.handleAttributeChange(attribute, item);
                       this.setState({
                         reRenderState: !this.state.reRenderState,
                       });
@@ -82,7 +84,7 @@ class ProductPage extends React.PureComponent {
                     }
                     key={item.id}
                     onClick={() => {
-                      this.props.changeAtr(attribute, item, product);
+                      this.handleAttributeChange(attribute, item);
                       this.setState({
                         reRenderState: !this.state.reRenderState,
                       });
@@ -96,6 +98,29 @@ class ProductPage extends React.PureComponent {
       default:
         return <h1>Error occured displaying product attributes.</h1>;
     }
+  }
+
+  handleAttributeChange(chosenAttribute, chosenItem) {
+    let tempProduct = this.state.localProduct;
+    tempProduct.attributes.map((attribute) => {
+      if (attribute === chosenAttribute) {
+        attribute.items.map((item) => {
+          return (item.selected = false);
+        });
+      }
+
+      attribute.items
+        .filter((item) => {
+          return item === chosenItem;
+        })
+        .map((el) => {
+          return (el.selected = true);
+        });
+
+      return attribute;
+    });
+
+    this.setState({ ...this.state, localProduct: tempProduct });
   }
 
   checkForAttributeSelection(attributes) {
@@ -144,10 +169,10 @@ class ProductPage extends React.PureComponent {
     return (
       <Fade left cascade>
         <div className="container">
-          {this.props.selectedProduct.inStock ? (
+          {this.state.localProduct.inStock ? (
             <div className="container">
               <div className="sideImagesContainer">
-                {this.props.selectedProduct.gallery.map((prodImage) => (
+                {this.state.localProduct.gallery.map((prodImage) => (
                   <img
                     onClick={() => this.displayImageGallery(prodImage)}
                     key={prodImage}
@@ -171,7 +196,7 @@ class ProductPage extends React.PureComponent {
           ) : (
             <div className="container">
               <div className="sideImagesContainer">
-                {this.props.selectedProduct.gallery.map((prodImage) => (
+                {this.state.localProduct.gallery.map((prodImage) => (
                   <img
                     onClick={() => this.displayImageGallery(prodImage)}
                     key={prodImage}
@@ -195,20 +220,13 @@ class ProductPage extends React.PureComponent {
           )}
 
           <div className="infoAndActionColumn">
-            <div className="prodBrand-PDP">
-              {this.props.selectedProduct.brand}
-            </div>
+            <div className="prodBrand-PDP">{this.state.localProduct.brand}</div>
 
-            <div className="prodTitle-PDP">
-              {this.props.selectedProduct.name}
-            </div>
+            <div className="prodTitle-PDP">{this.state.localProduct.name}</div>
             <br />
 
-            {this.props.selectedProduct.attributes.map((attribute) => {
-              return this.displayAttribute(
-                this.props.selectedProduct,
-                attribute
-              );
+            {this.state.localProduct.attributes.map((attribute) => {
+              return this.displayAttribute(attribute);
             })}
 
             {this.state.alertMessage && (
@@ -220,17 +238,17 @@ class ProductPage extends React.PureComponent {
             <div className="attribute-name-PDP">
               PRICE: <br />
               <GetPrice
-                singleProduct={this.props.selectedProduct}
+                singleProduct={this.state.localProduct}
                 currencySymbol={this.props.activeCurrencySymbol}
                 page={"PDP"}
               />
             </div>
 
-            {this.props.selectedProduct.inStock ? (
+            {this.state.localProduct.inStock ? (
               <div
                 className="add-to-cart-button"
                 onClick={() => {
-                  this.handleClick(this.props.selectedProduct);
+                  this.handleClick(this.state.localProduct);
                 }}
               >
                 ADD TO CART
@@ -243,9 +261,7 @@ class ProductPage extends React.PureComponent {
             )}
 
             <div className="product-description">
-              {this.props.selectedProduct.description
-                .split(/[>,<,/,p]+/)
-                .join("")}
+              {this.state.localProduct.description.split(/[>,<,/,p]+/).join("")}
             </div>
           </div>
         </div>

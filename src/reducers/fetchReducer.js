@@ -16,6 +16,9 @@ export default function fetchReducer(
       productsWithQTY.map((product) => {
         return (product.qtyy = 0);
       });
+      productsWithQTY.map((product) => {
+        return (product.cartID = "");
+      });
       const productsWithSelAttr = JSON.parse(JSON.stringify(productsWithQTY));
       productsWithSelAttr.map((product) => {
         product.attributes.map((attribute) => {
