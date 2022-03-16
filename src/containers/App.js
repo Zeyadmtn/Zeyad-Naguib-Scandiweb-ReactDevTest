@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   fetchAllProducts,
   fetchCategoryNames,
@@ -22,11 +22,11 @@ class App extends React.Component {
     return (
       <Router>
         <NavBar />
-        <Routes>
-          <Route path="/product-page" element={<ProductPage />} />
-          <Route path="/" element={<CategoryProductsPage />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
+        <Switch>
+          <Route path="/product-page" exact component={ProductPage} />
+          <Route path="/" exact component={CategoryProductsPage} />
+          <Route path="/cart" exact component={Cart} />
+        </Switch>
       </Router>
     );
   }

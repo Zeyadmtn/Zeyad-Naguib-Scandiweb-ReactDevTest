@@ -39,7 +39,7 @@ class ProductCard extends React.Component {
       }
     } else {
       this.redirectToPDP(product);
-      <Navigate to="/product-page" />;
+      // <Navigate to="/product-page" />;
     }
   }
 

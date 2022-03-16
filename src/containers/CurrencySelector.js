@@ -37,7 +37,12 @@ class CurrencySelector extends React.PureComponent {
   };
 
   toggleDropdown() {
-    this.setState({ toggleDropdown: !this.state.toggleDropdown });
+    if (this.props.miniCartOverlay === true) {
+      console.log("truwe")
+      this.setState({ toggleDropdown: false });
+    } else {
+      this.setState({ toggleDropdown: !this.props.toggleDropdown });
+    }
   }
 
   changeHandler(currency) {
@@ -79,9 +84,6 @@ class CurrencySelector extends React.PureComponent {
       <div
         className="currencySelectContainer"
         onClick={() => this.toggleDropdown()}
-        onBlur={() => {
-          this.toggleDropdown();
-        }}
       >
         {this.state.toggleDropdown ? (
           <img src={arrow_up} alt="arrow up" className="arrow-image"></img>

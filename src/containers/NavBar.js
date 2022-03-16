@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import Fade from "react-reveal/Fade";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import activeCategoryAction from "../actions/activateCategoryAction";
 import { fetchCategoryNames } from "../actions/fetchAction";
 import cart_icon from "../images/cart_icon.jpg";
@@ -17,9 +17,18 @@ class NavBar extends React.Component {
     this.handleCategoryButton = this.handleCategoryButton.bind(this);
     this.toggleMiniCartOverlay = this.toggleMiniCartOverlay.bind(this);
 
-    this.state = { miniCartOverlay: false };
+    this.state = { miniCartOverlay: false, pathname: "" };
   }
 
+  componentDidUpdate() {
+    if(this.state.pathname !== this.props.location.pathname) {
+        this.setState({
+           miniCartOverlay: false,
+
+            pathname: this.props.location.pathname
+        })
+    }
+}
   componentDidMount() {
     document.addEventListener("click", this.handleClickOutside, true);
   }
@@ -35,6 +44,7 @@ class NavBar extends React.Component {
       if (!domNode || !domNode.contains(event.target)) {
         this.setState({
           miniCartOverlay: false,
+
         });
       }
     }
@@ -68,7 +78,7 @@ class NavBar extends React.Component {
           <img src={store_logo} alt="store_logo" />
         </div>
 
-        <CurrencySelector />
+        <CurrencySelector minicartOverlay={this.state.miniCartOverlay}/>
 
         <div
           onClick={() => {
@@ -104,4 +114,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavBar));

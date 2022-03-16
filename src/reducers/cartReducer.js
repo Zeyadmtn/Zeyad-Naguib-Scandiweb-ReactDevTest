@@ -1,10 +1,9 @@
 export default function cartReducer(state = { cartItems: [] }, action) {
   switch (action.type) {
     case "ADD_TO_CART":
-      state.cartItems.push(action.payload);
       return {
         ...state,
-        cartItems: [...state.cartItems],
+        cartItems: [...state.cartItems, action.payload],
       };
 
     case "INCREMENT_ITEM":

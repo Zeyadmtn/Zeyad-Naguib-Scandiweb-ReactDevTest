@@ -28,6 +28,8 @@ class ProductPage extends React.PureComponent {
     };
   }
 
+
+  
   displayAttribute(attribute) {
     switch (attribute.type) {
       case "text":
