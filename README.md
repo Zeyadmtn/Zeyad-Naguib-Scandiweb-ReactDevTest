@@ -1,7 +1,15 @@
-# Scandiweb E-Commerce Basic Website Test
+# E-Commerce Website
 
-This is a basic e-commerce website made for an application for Jr. React Developer position at Scandiweb.
+This is a basic e-commerce website that fetches product data from GraphQL API.
 The project uses React.js and Redux for state management.
+
+<p align="center">
+<img src="/repo-images/Cart Overlay.jpeg" width="50%" height="auto">
+<img src="/repo-images/Cart.jpeg" width="50%" height="auto">
+<img src="/repo-images/Category.jpeg" width="50%" height="auto">
+<img src="/repo-images/PDP.jpeg" width="50%" height="auto">
+</p>
+
 
 ## Available Scripts
 
